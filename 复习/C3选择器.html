@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>C3选择器</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		body{
+			font-size: 16px;
+			background: #ccc;
+		}
+		a{
+			text-decoration: none;
+		}
+		pre{
+			width: 80%;
+			height: 100%;
+			background:#ccc;
+			margin: 0 auto;
+		}
+		input:enabled{
+			background: #0f0;
+		}
+		input:disabled{
+			background: #f00;
+		}
+		/*input:read-only{
+			background: #f00;
+		}
+		input:read-write{
+			background: #0f0;
+		}*/
+		input:checked{
+			/*background: #f00; 不生效*/
+			outline: 2px solid #f00;
+			/*position:absolute;
+			clip:rect(1px 10px 10px 1px);*/
+		}
+		/*input{
+			border: 0;
+		}*/
+	</style>
+</head>
+<body>
+<pre>
+<code>
+选择器：基本选择器、层级选择器、伪类选择器、属性选择器
+一).基本选择器：*(通配符)、div(元素选择符)、#(id选择符)、.(class类选择符)、包含选择符、群组类选择符
+	
+二).层级选择符
+	1、后代选择器（E  F）      包含选择器
+	2、子代选择器（E > F）     其中E为父元素，F为子元素，一定是父子关系  IE7+
+	3、相邻兄弟选择器（E+F）   E和F是兄弟是同辈，F在E的后面，并且相邻    IE7+
+	4、通用选择器（E~F）       E元素后面的所有兄弟F                    IE7+
+
+三).伪类选择符
+	1、动态伪类
+	   E:link       当前状态
+	   E:visited    访问过
+	   E:focus      获取焦点(按tab键可获取焦点) IE8+
+	   E:hover      鼠标移上
+	   E:active     鼠标按下                   IE8+
+
+	2、目标伪类
+	   E:target  IE9+
+	   目标伪类选择器是动态伪类，只有存在URL指向该匹配元素时，样式效果才会生效。
+
+	3、语言伪类
+	   E:lang   IE8+
+	   quotes 属性设置嵌套引用（embedded quotation）的引号类型。
+	   Lang取值：zh    en     fr     
+	   参考网址
+	   <a href="http://www.w3school.com.cn/tags/html_ref_language_codes.asp">http://www.w3school.com.cn/tags/html_ref_language_codes.asp</a>
+	   例：
+	   &lt;html&gt;
+	   &lt;head&gt;
+	   &lt;style type="text/css"&gt;
+	   :lang(en)
+	      {
+	      quotes: "~" "~" 
+	   }
+	   &lt;/style&gt;
+	   &lt;/head&gt;
+	   &lt;body&gt;
+	   &lt;p&gt;文字&lt;q lang="en"&gt;段落中的引用的文字&lt;/q&gt;文字&lt;/p&gt;
+	   &lt;/body&gt;
+	   &lt;/html&gt;
+
+	4、UI元素状态伪类   IE9+ 
+	   E:enabled       启用 
+		除了禁用的就是启用的
+		<input type="text" enabled value="可用">
+	   E:disabled      禁用 
+		<input type="text" disabled value="禁用表单"> 
+	   E:read-only     只读 
+		<input type="text" readonly value="只读表单"> 
+	   E:read-write    非只读 
+		除了只读的就是非只读的
+		<input type="text" readwrite value="非只读表单"> 
+	   E:checked       选中 
+		<input type="checkbox" checked> 选中表单
+		<mark>复选框不能改变背景色，可以改变外轮廓</mark>
+		outline:2px solid #ccc;   
+
+	5、结构伪类                 IE9+ 
+	   E:first-child          作为父元素的第一个子元素的元素E
+	   E:last-child           作为父元素的最后一个子元素的元素E
+	   E F:nth-child(n)       选择父元素E的第n个子元素F
+	   E F:nth-last-child(n)  选择元素E的倒数第n个元素F
+	   E:only-child           选择父元素内只包含一个子元素，且匹配为E元素
+
+	   E:first-of-type        选择父元素内具有指定类型的第1个E元素
+	   E:last-of-type         选择父元素内具有指定类型的最后一个E元素
+	   E:nth-of-type(n)       选择父元素内具有指定类型的第n个E元素
+	   E:nth-last-of-type(n)  选择父元素内具有指定类型的倒数第n个E元素
+	   E:only-of-type         选择父元素只包含一个同类型的子元素，且匹配为E元素
+
+	   E:empty    选择没有子元素的元素，而且该元素也不包含任何文本节点
+	   E:root     选择匹配元素E所在文档的根元素（多只html）
+
+	   注：
+	   img:nth-of-type(odd)  所有有图片里面第奇数个图片
+	   img:nth-of-type(even) 所有有图片里面第偶数个图片
+
+	6、否定伪类  IE9+ 
+	   E:not(F)    匹配所有除元素F外的E元素，不写E就是除F外的所有元素
+	   例如：
+	   ：not(footer){   }    页面中除了footer外的所有元素
+	   input：not([type=submit]){    }   除submit按钮外的所有input标签
+
+四).伪元素
+   伪元素其实在css中一直存在，大家平时看到的有":first-line"":first-letter"":before"":after"，
+   css3中对伪元素做了一定的调整，在以前的基础上加了一个冒号，为了区别伪类。
+   ::first-letter
+   ::first-line
+   ::before
+   ::after
+   ::selection   仅接受两个属性，一个background，一个color
+
+五).属性（attribute）选择器  IE7+ 
+   在html中，通过各种各样的属性可以给元素增加很多附加的信息。
+   Css中引入了一些属性选择器，这些选择器可基于元素的属性来匹配元素。
+   E[attr]      定义了attr属性的E元素。E可省略，表示定义了attr属性的任意元素
+   E[attr =val] 定义了attr属性，并且属性值为val的E元素。
+   E[attr|=val] 定义了attr属性，并且属性值是val或者以val-开头的E元素。
+   E[attr~=val] 定义了attr属性，并且属性值具有多个空格分隔的值，其中一个为val的E元素
+   E[attr*=val] 定义了attr属性，并且属性值任意位置包含val的E元素。
+   E[attr^=val] 定义了attr属性，并且属性值是以val开头的E元素。
+   E[attr$=val] 定义了attr属性，并且属性值是以val结束的E元素。
+   例如：
+   	[class=ha]{ background:#60C}
+	&lt;div class="hahah"&gt;hahah&lt;/div&gt;
+</code>
+</pre>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ES6</title>
+</head>
+<body>
+	访问ruanyf.github.io/es-checker，可以看到您的浏览器支持ES6的程度。
+	运行下面的命令，可以查看你正在使用的Node环境对ES6的支持程度。
+	全局安装：npm install -g es-checker
+	运行指令：es-checker
+
+	Babel是一个广泛使用的ES6转码器，可以将ES6代码转为ES5代码，从而在现有环境执行。
+	这意味着，你可以用ES6的方式编写程序，又不用担心现有环境是否支持。
+	Babel提供babel-cli工具，用于命令行转码。
+	Google公司的Traceur转码器，也可以将ES6代码转为ES5代码
+
+	babel-polyfill
+	Babel 默认只转换新的 JavaScript 句法（syntax），而不转换新的 API，比如
+	Iterator、Generator、Set、Map、Proxy、Reflect、Symbol、Promise等全局对象，
+	以及一些定义在全局对象上的方法（比如Object.assign）都不会转码。
+
+	举例来说，ES6 在Array对象上新增了Array.from方法。Babel 就不会转码这个方法。
+	如果想让这个方法运行，必须使用babel-polyfill，为当前环境提供一个垫片。
+
+	//let 	定义一个变量
+	//const 定义一个常量
+	// let num = 10;
+	// const pi = 3.14;
+
+	//与var的区别：
+	//	1. 不能重复定义
+	// 		let num = 2;//报错，重复定义了。
+	//	2. 拥有块儿作用域
+
+	拥有块儿作用域
+	不存在变量提升
+	暂时性死区：在let命令声明变量tmp之前，都属于变量tmp的“死区”。
+	
+	ES6 声明变量的六种方法
+	ES5 只有两种声明变量的方法：var命令和function命令。ES6 除了添加let和const命令，后面章节还会提到，
+	另外两种声明变量的方法：import命令和class命令。所以，ES6 一共有 6 种声明变量的方法。
+
+	顶层对象:在浏览器环境指的是window对象，在 Node 指的是global对象。
+	ES5 之中，顶层对象的属性与全局变量是等价的。
+
+	解构赋值：
+	<script>
+		//好好粘贴：ctrl+shift+v
+		let [foo, [[bar], baz]] = [1, [[2], 3]];
+		foo // 1
+		bar // 2
+		baz // 3
+
+		let [ , , third] = ["foo", "bar", "baz"];
+		third // "baz"
+
+		let [x, , y] = [1, 2, 3];
+		x // 1
+		y // 3
+
+		let [head, ...tail] = [1, 2, 3, 4];
+		head // 1
+		tail // [2, 3, 4]
+
+		let [x, y, ...z] = ['a'];
+		x // "a"
+		y // undefined
+		z // []
+
+		//解构不仅可以用于数组，还可以用于对象。
+		let { foo, bar } = { foo: "aaa", bar: "bbb" };
+		foo // "aaa"
+		bar // "bbb"
+
+		//对象的解构与数组有一个重要的不同。数组的元素是按次序排列的，变量的取值由
+		//它的位置决定；而对象的属性没有次序，变量必须与属性同名，才能取到正确的值。
+		let { bar, foo } = { foo: "aaa", bar: "bbb" };
+		foo // "aaa"
+		bar // "bbb"
+
+		let { baz } = { foo: "aaa", bar: "bbb" };
+		baz // undefined
+
+		//与数组一样，解构也可以用于嵌套结构的对象。
+		let obj = {
+		  p: [
+		    'Hello',
+		    { y: 'World' }
+		  ]
+		};
+
+		let { p: [x, { y }] } = obj;
+		x // "Hello"
+		y // "World"
+		
+		Set 实例的属性和方法:
+		//1.Set 结构的实例有以下属性。
+		Set.prototype.constructor：构造函数，默认就是Set函数。
+		Set.prototype.size：返回Set实例的成员总数。
+		Set 实例的方法分为两大类：操作方法（用于操作数据）和遍历方法（用于遍历成员）。下面先介绍四个操作方法。
+		1.add(value)：添加某个值，返回 Set 结构本身。
+		2.delete(value)：删除某个值，返回一个布尔值，表示删除是否成功。
+		3.has(value)：返回一个布尔值，表示该值是否为Set的成员。
+		4.clear()：清除所有成员，没有返回值。
+
+		//2.Set 结构的实例有四个遍历方法，可以用于遍历成员。
+		1.keys()：返回键名的遍历器
+		2.values()：返回键值的遍历器
+		3.entries()：返回键值对的遍历器
+		4.forEach()：使用回调函数遍历每个成员
+
+		WeakSet 实例的属性和方法:
+		WeakSet 结构与 Set 类似，也是不重复的值的集合。但是，它与 Set 有两个区别。
+		首先，WeakSet 的成员只能是对象，而不能是其他类型的值。
+		其次，WeakSet 没有size属性，没有办法遍历它的成员。
+
+		WeakSet 结构有以下三个方法。
+		WeakSet.prototype.add(value)：向 WeakSet 实例添加一个新成员。
+		WeakSet.prototype.delete(value)：清除 WeakSet 实例的指定成员。
+		WeakSet.prototype.has(value)：返回一个布尔值，表示某个值是否在 WeakSet 实例之中。
+
+		//Array.from方法可以将 Set 结构转为数组。
+		//而且，数组的map和filter方法也可以间接用于 Set了。
+		let set = new Set([1, 2, 3]);
+		set = new Set([...set].map(x => x * 2));
+		// 返回Set结构：{2, 4, 6}
+
+		let set = new Set([1, 2, 3, 4, 5]);
+		set = new Set([...set].filter(x => (x % 2) == 0));
+		// 返回 Set结构：{2, 4}
+	</script>
+</body>
+</html>

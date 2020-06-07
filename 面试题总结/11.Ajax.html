@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+  <!--
+    xhr的就绪状态有：xhr.readyState
+			xhr.readyState === 0 创建了，没open
+			xhr.readyState === 1 open了，没send
+			xhr.readyState === 2 send了，数据还没返回
+			xhr.readyState === 3 send了，返回部分数据
+			xhr.readyState === 4 send了，数据全部返回
+
+    响应的状态码：xhr.status
+      200 OK
+      404 NOT FOUND 未找到页面
+      302 REDIRECT
+      5XX 服务器错误
+
+    状态码意义：
+      2xx 响应成功
+      3xx 请求被重定向
+      4xx 请求错误
+		  5xx 服务器错误
+  -->
+<script>
+		// AJAX 是一种在无需重新加载整个网页的情况下，能够更新部分网页的技术
+    // 向服务器发送请求，获取数据的技术(不需要刷新页面)
+    // 常用的请求方式：GET、POST  (其他如：PUT、DELETE、HEAD)
+    // 1. 创建一个ajax对象XMLHttpRequest;
+    var xhr = new XMLHttpRequest();
+
+    // 2. 配置这个对象xhr.open('请求方式', url, 是否异步)
+    xhr.open('get', './text.txt', true);
+
+    // 4. 监听响应
+    xhr.onreadystatechange = function () {
+        // 这个事件是监听xhr对象的状态，
+        //只要xhr对象的状态一变化，这个事件就触发
+      
+        if (xhr.readyState !== 4) {
+            return;
+        }
+        //代码运行到此处时，说明readyState===4，此时数据已经全部返回
+        //虽然服务器给了我们响应，但是我们需要判断响应结果
+        if (xhr.status >= 200 && xhr.status < 300) {
+            // 响应成功，取得服务器返回的内容，被放到了xhr.responseText中
+            alert(xhr.responseText);
+        } else {
+            // 响应失败
+        }
+    }
+		// text/html：HTML格式
+		// text/plain：纯文本格式
+		// image/png：png图片格式
+		// application/json：JSON数据格式
+		xhr.setRequestHeader("Content-type","text/plain;charset:utf-8");
+		// 3.发送请求
+		xhr.send();
+		
+		// post方法设置请求头，发送参数
+		// xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		// xhr.send("fname=Henry&lname=Ford");
+</script>
+</body>
+</html>

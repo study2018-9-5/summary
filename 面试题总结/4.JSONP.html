@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>测试文件</title>
+</head>
+<body>
+  <script>
+    /* 
+      同源策略&跨域：
+        1. 浏览器从服务器(http://localhost:9999)加载了html，
+        在这个html页面中发送的ajax，必须也从该服务器(http://localhost:9999)加载数据
+
+        2. 违背了同源策略的请求，就是跨域请求。
+        例如：http://localhost:9999/ 打开一个html，在这个html中，
+        向http://loacalhost:8888 发送了一个ajax请求，则该请求，就是跨域请求。
+
+        注：当请求的协议、域名、端口号，有一个不同，则该请求被视为跨域请求。
+
+        跨域的解决方案：
+        1. JSONP(前后端一起配合)
+        2. CORS(cross origin resource share)：在http的response加一个header：Access-Control-Allow-Origin，就能实现ajax跨域
+        3. 反向代理
+        4. document.domain 只能用于二级域名相同的情况。
+        5. postMessage
+
+      JSONP利用script标签不受同源策略限制，来发送跨域请求。
+        1. 创建一个script标签
+        2. 设定该标签的src属性(按照服务器的要求来设定)
+        3. 将该标签上DOM树
+          ==> 该请求就会发送给服务器,服务器会响应会一段JS代码
+          ==> 代码内容为一个函数调用(该函数名，是我们传递给服务器的)，函数的实参，就是我们要取得的数据
+    */
+    function callbackFunction(data) {
+      console.log("jsonp -> data", data)
+    }
+  </script>
+  <script type="text/javascript" src="https://www.runoob.com/try/ajax/jsonp.php?jsoncallback=callbackFunction"></script>
+</body>
+</html>

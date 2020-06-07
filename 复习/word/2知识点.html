@@ -1,0 +1,443 @@
+﻿---------------------------------------
+
+HTML + CSS : 
+	
+	HTML历史：HTML4.01(稳定)
+					HTML5    (目前流行的)
+					XHTML2.0 (不怎么用了)
+	HTML常用标签：div、span、ul、li、p、img ...
+			http://www.xuanfengge.com/funny/html5/element/
+	
+	CSS常用样式：width、height、background、border ...
+
+	HTML规范和标准：
+				1. ul li 、table tr td ...
+				2. p标签不能嵌套块标签
+				3. 什么结构采用什么标签，列表、标题、段落
+				4. 一个页面中只能出现一个h1标签
+				5. id属性值必须唯一的
+
+	HTML语义化：
+			1. 什么结构采用什么标签，列表、标题、段落
+			2. 好处：有利于SEO、团队协作、结构清晰 ... 
+
+	标签分类：
+			块标签：div、p、ul、li、h1..h6
+			内联标签（行内）：span、a、em、strong
+			特殊标签：img、input	
+			块与内联的区别：
+					1. 块独占一行、支持所有样式、默认宽跟父容器相同
+					2. 内联一个排列、不支持宽、高。默认由内容撑开。
+
+	CSS的选择器：
+		ID、CLASS、TAG、后代、分组 ...	
+		优先级：!important > style > ID > ClASS > Tag > 继承
+
+	CSS浮动：
+		浮动的原理：float : left、right、clear ...
+		嵌套结构的清浮动：after伪类(最好的方案).clearfix:after { content: ".";display: block;
+		height: 0;clear: both;visibility: hidden; 、overflow、空标签、定位、display:inline-block	
+
+	CSS定位：
+		种类：absolute、relative、fixed、static、left、top、z-index
+		区别：absolute：不占位置、位置相对页面
+			  relative：占位置、位置相对自己
+
+	布局方案：
+		两列布局：一列固定、一列自适应。
+		三列布局：两边固定、中间自适应。
+		居中布局：文字上下左右居中、块（大小不固定的情况怎么用）上下左右居中
+		两列布局：高度等高（https://www.jianshu.com/p/c6a757882252）
+		栅格布局：bootstrap、antd等
+	
+	网页切换流程：photoshop中的选取工具，配合信息面板
+				图片的格式：gif(小图，动图) jpg(色彩丰富的图片，比如banner) png(需要透明的图片)
+
+	BFC规范：
+		块及格式化上下文，内部的元素布局不影响到外部的元素，形成一个独立的空间。
+			哪些样式可以触发BFC。能解决哪些问题？（高度塌陷）
+			float属性不为none
+			position为absolute或fixed
+			display为inline-block, table-cell, table-caption, flex, inline-flex
+			overflow不为visible
+
+	CSS的hack：
+		IE6 IE7 ...
+
+	CSS的重置样式：
+		css reset方案：*{margin:0;padding:0;} li{list-type:none} img{display:block}						
+	CSS的雪碧图（精灵图）：
+		background-position来实现的，好处：减少请求、减少质量。
+
+
+---------------------------------------
+
+HTML5 + CSS3 + 移动端布局 : 
+
+	H5功能：
+	
+		H5语义化标签：
+			header、footer、nav、menu、section、article、aside
+
+		新的表单元素：
+			<input type=""> : email 、number 、tel 等 
+			placeholder required 校验 autofocus ...	
+
+		音频视频：audio、video、媒体属性：controls、loop、autoplay ...
+			api : 属性(currentTime、duration)、方法( play()、pause() )、事件( ended )
+
+		canvas : <canvas>标签，用于网页绘图
+
+		localStorage、sessionStorage : 本地存储	
+
+		websocket : 双工通信，协议wss。实现：在线聊天、多人游戏、赛事直播。
+
+		geolocation : 获取地理信息的，主要经纬度。	
+
+		web workers : 在前端开启多线程  var w = new Worder('worker.js');（了解）
+
+		draggable : H5拖拽文件的操作  ondrop ondragover ...  (了解)
+
+		跨域操作：postMessage (了解)
+
+		离线存储：在没有网络的情况下，也能打开一个页面 (了解) 
+				https://blog.csdn.net/dj0379/article/details/53350309   
+
+	CSS3功能：
+	
+		CSS3选择器：nth-of-type、ntn-child、属性选择器、伪类与伪元素
+
+		CSS3小功能：圆角、阴影box-shadow、border、倒影、怪异盒模型、线性渐变、放射性渐变等
+
+		CSS3变形：transform : rotate scale translate skew
+
+		CSS3过渡：transiton , 参数transition:width 2s;
+
+		CSS3动画：animation ，参数animation:mymove 5s infinite; @keyframes mymove
+
+		CSS3_3D： rotateX、rotateY、translateZ、 perspective景深属性、tramsform-style:3d、backface-visibility
+
+		CSS3弹性盒模型：display : flex ;  （http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html?^%$）
+
+		CSS3媒体查询：做响应式 @media query 
+		@media (color){
+            .box{height: 100px;width: 100px;background-color: lightblue;}   
+        }   
+
+
+		CSS3事件：transitonend、animationstart、animationiteration、animationend
+		
+		CSS3动画库：animate.css (http://daneden.github.io/animate.css/)
+
+		CSS3浏览器前缀：-webkit-  -moz-  -o-  -ms- 
+			autoprefixer模块：基于nodeJS的浏览器前缀模块
+			SASS、LESS(预处理CSS)
+			autoprefixer(后处理CSS，postCSS)
+
+		CSS3分栏布局：column-width 、column-count (了解)	
+		CSS3不规则图形：shape-outside(了解)
+		CSS3计算：calc (了解)
+
+	移动端布局：
+
+		方案：流式布局(百分比)和rem布局(rem单位)
+		单位：rem、em、vw、vh
+		布局：flex、position
+		rem布局：
+			font-size怎么设置：JS动态算、vw动态算、媒体查询
+			rem怎么换算px : 在线网站、插件cssrem、sass预处理
+
+---------------------------------------
+
+JavaScript : ES5
+	
+	基础语法：变量、数据类型、运算符、this指向、函数、语句(if switch for while)、
+	字符串的方法( substring、indexOf、charAt ... )、数组的方法( push sort splice ... )、
+	正则( 转义字符、量词、首尾限制 ...  test、search、match、replace、exec  )、对象自变量 ( {} )、
+	DOM( 子节点、父节点、兄弟节点、创建节点、添加节点、删除节点 )、
+	BOM( window.location、window.navigtor、window.innerWidth、window.history、window.cookie、window.open )、
+	事件( event对象、事件流、事件委托、标准的事件写法 )
+
+	JS运动：匀速、缓冲、抛物线、圆周运动、碰撞... tween算法
+
+	JS面向对象：
+			如何创建对象，对象的组成？属性和方法
+			prototype原型
+			__proto__原型链
+			继承：
+				属性：
+					Parent.call();
+				方法：
+				var F = function(){}
+				F.prototype = Parent.prototype
+				Child.prototype = new F();
+				Child.prototype.constructor = Child;
+
+	AJAX：
+		什么是AJAX？在无刷新的情况下，进行后端数据的获取
+		get和post请求的区别？写法、输出量、安全
+		具体写法：XMLHTTPRequest open() onreadystatechange send() 
+		发送和响应：request、response
+
+	跨域：
+		JSONP、CORS、反向代理 (这三种都是针对AJAX模式的)	
+		window.name、cookie domain、postMessage、iframe(了解下)
+
+	jQuery库：
+		常见方法：html()、css()、eq()、index()、each()、on()、trigger()...
+		$.extend({a:function(){}})和$.fn.extend({b:function(){}})区别？
+				$.a()  、    $().b()
+		用JQ如何写一个插件？$.extend()、$.fn.extend()		
+
+---------------------------------------
+
+JavaScript : ES6
+
+		1. let  const   区别  var     
+		2. ()=>{}  箭头函数   箭头函数和普通函数的区别
+		3. promise 异步解决方案，是一个规范
+		4. 模块化  export defaut ...   import ... from
+		5. Set数据、Map数据 
+		6. 面向对象写法  class 类 {}  、 class 类 extends 父类 {}
+		7. 解构赋值   var [] = []  var {} = {};
+		8. Symbol类型  新的数据类型 表示独一无二的值
+		9. fetch  一种新的ajax操作方式，基于promise
+		10. iterator 遍历器 
+		11. for ... of 
+		12. generator 生成器 
+		13. async/await  异步操作
+		14. 模版字符串   ``  ${}
+
+		http://es6.ruanyifeng.com/		
+
+
+---------------------------------------
+
+Vue : vue + router + vuex + axios + mongoose + express(koa)	
+
+	安装：单独下载vue.js  vue的脚手架
+	模板语法 : {{}}
+	计算属性和侦听器 : computed 、watch
+	数据和方法 : data 、method
+	Class 与 Style 绑定 :   { box : true } 、 {{'background':'red'}}
+	指令：v-for v-if v-model v-bind ...
+	事件：v-on:click=""  -> @click=""
+	组件：父子通信、非父子(空实例bus总线)
+	过渡：<transition> 针对显示隐藏的动画设置
+	混入: 混入 (mixins) (了解)
+	自定义指令和过滤器：directive和filter
+	声明式(响应式)渲染的原理：definePrototype()
+	生命周期：mounted
+
+	单文件组件 : .vue ( template、script、style )
+	前端路由 : vue-router (  1. hash模式   2. history模式  )
+	状态管理 : vuex ( 借鉴flux和redux , store、state、mutations、action、module )
+	服务端渲染 : SSR ( 好处：有利于SEO搜索优化、展示速度会快 )
+				vue : nuxt.js   react : next.js
+
+---------------------------------------
+
+react :  react + router4 + redux + react-redux + axios + mongoose + express(koa)
+
+	安装：脚手架 create-react-app
+	JSX语法：
+		1. 标签需要闭合
+		2. 最外层只能有一个父标签
+		3. img alt属性
+		4. class -> className
+	组件写法：
+		1. 函数形式(无状态组件)
+		2. 对象形式(有状态组件)
+	组件通信：父子通信
+	生命周期：compontentDidMount、compontentDidUpdate
+	react中的CSS：1. .css文件   CSS in JS (aphrodite : https://github.com/Khan/aphrodite)
+	state和props：
+		如何修改state : setState() 参数 {} function 第二个参数
+	高阶组件、受控组件、refs、key属性
+	路由：react-router-dom
+	状态管理：redux、react-redux、mobx(新的状态管理框架，利用装饰器的写法实现的)
+	虚拟DOM和diff算法
+	reducer纯函数：传入什么参数就会返回对应的结果，尽力不要去直接返回state。
+
+---------------------------------------
+
+angular : 
+	
+	脚手架、指令(属性指令，结构指令)、依赖注入( 自动的通过服务来创建一个对象，注入到constructor中 )、
+	父子通信、[]属性 ()事件 路由(类似vue形式)和状态管理(类似react形式，ngrx，mobx)
+	命令：ng g component xxx
+		  ng g service xxx
+		  ng g pipe xxx
+		  ng g directive xxx
+	装饰器：@Component()
+			@Module()
+			@Injector()
+			@Pipe()
+			@Directive()
+			@Input()
+			@Output()
+	TS : TypeScript微软开发的，JS的超集。
+		 强类型 let xxx : number = 123;			  
+		 装饰器
+		 面向对象(public、private...)、抽象类
+		 接口、泛型、命名空间
+
+---------------------------------------
+
+后端：
+
+	PHP : 
+		集成开发环境：XAMMP、WAMP、PHPStudy
+		http协议、http状态码(301永久重定向)、输入url后发生了什么？
+		<?php  ?>、变量、语句、字符串操作、数组操作、内置函数( $_GET[]、isSet()、strlen()、json_encode() )
+		mysql数据库 : sql语句 : 增删改查
+				into
+				delete
+				update
+				select
+		PHP与mysql结合开发：
+				mysqli_connect()
+				mysqli_query()
+				mysqli_num_row
+				mysqli_fetch_assoc()
+		跟JS区别？
+				1. 必须分号结束
+				2. 链接字符串用 . 
+				3. 单引号与双引号是有区别的	
+		功能：
+			session
+			cookie
+			$_FILE[] 
+			面向对象
+			smarty模版
+		php框架：
+			Laravel
+			PHPthink			
+
+
+	NodeJS :  node + express + ejs + mongoose
+
+		概念：高并发、事件驱动、非阻塞式的IO模型、基于chrome V8引擎	
+
+		模块化开发：commonJS规范 : require() module.exports / exports
+			模块化库 : require.js( AMD规范 )  sea.js( CMD规范 )
+			模块化工具 : webpack
+
+		全局：__dirname、setTimeout()、global、process（进程）
+		
+		内置模块：fs、url、path、querystring、http ...
+
+		做什么？小爬虫、自动化工具、网站后台
+
+		express框架：基于node的网站后台的框架，极简的框架，用一些好用的功能，需要下载中间件
+		（ parse-cookie、parse-body、staticPath ）
+		koa2( 类似于express , 写法是利用async和await实现的 )
+			脚手架：express-generator
+
+		ejs : 前后端的模版 <% if %>   <%= message %>   <%- message %>
+		
+		mongodb数据库：	非关系型数据库 ，集合(表)，文档(一条数据)，域(字段)
+			mongodb : 增删改查
+			mongoose : 简化node和mongodb的操作
+				model模型 schema对象
+			可视化数据库：roboMongo		
+
+
+
+---------------------------------------
+
+其他：
+
+	git : 
+		1. git 是一个分布式的版本工具，可以适合多人协作开发。
+		2. git命名：add commit reset rm checkout branch remote ...
+		3. github: 远程仓库 push pull ...
+		4. 开发一个功能，先不要在主分支上直接开发，建一个分支进行开发，再跟主分支合并。
+
+	webpack : 打包(积木都已经搭好了)
+		打包模块的工具，把任何文件都可以转换成浏览器所识别的文件
+			.vue -> .js .sass -> .css  jpg png -> 对应的图片路径
+		主要掌握：webpack.config.js
+			entry(入口)  output(出口) loaders(模块加载器) plugins(插件)	
+		常见loaders : 
+			css-loader、style-loader、sass-loader、babel-loader、file-loader
+			mocha-loader
+
+
+	gulp : 自动化(积木没有搭建好，所有的功能需要自己去搭建)
+		gulpfile.js配置文件
+		语法：gulp.task()、gulp.src()、gulp.dest()、gulp.pipe()
+			gulp.task('hello',()=>{
+				gulp.src().pipe().dest();
+			})
+		常见模块：gulp-concat()、gulp-unlify()、gulp-sass、gulp-connect
+			gulp-babel 	
+
+	sass : 预编译CSS
+		less库跟sass很类似：sass的功能比less要强大
+			语法：定义变量、嵌套、语句(if for)、extend、混合宏 ...
+			( http://www.lvyestudy.com/sass/sass_list.aspx )
+
+	小程序 : 
+		类似于vue和react的这样一个框架
+		文件：xxx.json、xxx.wxml、xxx.wxss、xxx.js
+		功能：配置、结构、样式、逻辑、组件(icon、switch...)、api(扫一扫，地理位置...)
+		工具：web开发者工具( 小程序、公众号 )
+
+	公众号 : 
+		分类：订阅号、服务号、企业号
+		后台管理：用户管理、留言管理、自动回复消息、投票管理、消息推送 ...
+		自己基于公众号开发一些网页：
+			安全域名：备案过的
+			网页授权：找到token票据，换取最终的用户信息(权限比较高，所以用测试号)
+			JS SDK调用：公众号中调用到微信的一些功能(地理信息、分享朋友圈...)
+
+	混合开发 : 
+		phoneGap/cordova
+			用什么功能下载什么插件：
+				1. 命令：cordova add plugins device
+				2. 命令：cordova add plugins camera
+
+		H5+ 、MUI
+			开发工具：HBuilder
+			getlocation、map ... 
+
+		vue : 混合版的框架 weex
+		react : 混合版的框架 react-native
+		angular : 混合版的框架 ionic				
+
+	bootstrap : 
+		响应式的框架，根据不同的阈值，响应不同的展示。
+		阈值：四档  小于768   ≥768   ≥992   ≥1200
+		栅格系统：把一行分成了12列
+		包含：很多组件(按钮、列表、进度条)、JS插件(轮播图、标签页...)   
+
+	babel : 
+		把ES6转成ES5的工具
+		也可以单独使用：node，nodemon (http://babeljs.io/docs/setup/)
+
+	算法 + 数据结构 : 
+		递归、枚举、求最大值最小值、数组去重、数组排序( 冒泡排序、快速排序、插入排序 ...  )
+		经典算法：洗牌算法、约瑟夫环、Astar寻路、傅立叶变换、背包问题、动态规划、贪心算法、二分查找 ... 
+		数据结构 : 队列、堆、链表、树结构( 二叉树、红黑树 ... )、表 ...
+
+	安全 : 
+		XSS : 跨站脚本攻击  防御手段：转义在存储 ...
+		CSRF : 跨站请求伪造 防御手段： referrer  验证码 ...
+		Cookie : cookie + 签名算法
+
+	测试 : 
+		测试分为两种：
+				黑盒测试(又被称为功能测试，功能)
+				白盒测试(是通过程序的源代码进行测试而不使用用户界面，代码)
+		
+		mocha : 单元测试 (白盒)
+		jasmine : 单元测试 (白盒)  
+			mocha和jasmine是测试框架 : 断言库 chai 三种风格
+
+		karma跑单元测试的脚手架	
+
+		e2e : 端对端测试 , 模拟用户操作项目的行为  (黑盒)
+
+	...
+react-router-dom 

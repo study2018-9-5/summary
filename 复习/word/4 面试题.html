@@ -1,0 +1,744 @@
+Doctype作用？严格模式与混杂模式如何区分？它们有何意义?
+	1. 解析文件 html xml xhtml  .... Doctype作用知道当前是什么文件
+	2. 严格模式与混杂模式如何区分？标准模式(加Doctype)与怪异模式(不加Doctype)
+	3. 它们有何意义? 产生盒模型的不同表现形式
+		标准模式 : padding + content + border
+		怪异模式 : content
+		box-sizing可以通过样式改变这两种模式
+
+
+
+HTML5 为什么只需要写 <!DOCTYPE HTML>？
+     1. HTTM4.01解析HTML的时候需要对DTD进行设置：解析方式SMGL
+     2. HTTM5不需要对DTD进行解析，所以写的比较简化
+
+
+行内元素有哪些？块级元素有哪些？ 空(void)元素有那些？
+	行内元素 : span a strong em
+	块级元素 : div p ul li h1 ... h6
+	特殊 : input img
+	空(void)元素 : <hr> <br>  写不了内容的都是空元素
+
+
+页面导入样式时，使用link和@import有什么区别？
+	1. @import兼容性不好
+	2. @import性能不好
+	项目中要尽量使用link，而不要引入@import方式
+
+
+介绍一下你对浏览器内核的理解？常见的浏览器内核有哪些？
+	1. 浏览器内核对CSS和DOM解析解析，形成CSS树和DOM树，然后在利用内核渲染到页面中
+	2. webkit  Blink ...  ( 说一下五大浏览器 )
+
+
+html5有哪些新特性、移除了那些元素？如何处理HTML5新标签的浏览器兼容问题？如何区分 HTML 和 HTML5？
+	新特性 : 语义化标签、......太多了
+	移除了那些元素 : b i s font color . ..
+	HTML5新标签的浏览器兼容问题 : 
+		JS创建这些标签 var header =  document.createElement('header');
+					   header.style.display = 'block';
+	如何区分 HTML 和 HTML5 :  <!DOCTYPE HTML>			   
+	
+
+简述一下你对HTML语义化的理解？
+	1. 没CSS的时候，更好的展示
+	2. 针对特殊人群
+	3. SEO搜索引擎
+	4. 团队协作与维护
+
+
+HTML5的离线储存怎么使用，工作原理能不能解释一下？
+	在没网的时候也能访问页面。
+	创建一个配置文件，配置文件中写的是要离线的内容，文件和图片等。
+	所以在没有网络的时候去访问这个配置文件，而不去访问服务器，这样可以进行离线操作了。
+
+请描述一下 cookies，sessionStorage 和 localStorage 的区别？
+	1.cookies 4KB 客户端与服务端传输
+	2.sessionStorage 和 localStorage ：5M 只在客户端完成存储
+
+
+iframe有那些缺点？
+	1. 会有新的请求，对局部iframe是进行刷新的
+
+
+
+Label的作用是什么？是怎么用的？（加 for 或 包裹）
+	1. 包着表单元素，让触发范围变大。 for id
+
+HTML5的form如何关闭自动完成功能？
+	1. autoCompleted = off
+
+
+如何实现浏览器内多个标签页之间的通信? (阿里)
+	cookie localStorage
+
+
+webSocket如何兼容低浏览器？(阿里)
+	socket.io  ( socket框架 , 低版本浏览器兼容 )
+
+
+页面可见性（Page Visibility）API 可以有哪些用途？  ???????????
+	从一个页面切换到另外一个页面，进行页面的显示隐藏
+	document.hidden
+	事件
+
+	https://blog.csdn.net/qq_39759115/article/details/79608127
+
+
+如何在页面上实现一个圆形的可点击区域？
+	1. border-radius + click 
+	2. <map> <area></area> </map> :  矩形  圆形  多边形
+	3. canvas
+
+实现不使用 border 画出1px高的线，在不同浏览器的Quirksmode和CSSCompat模式下都能保持同一效果。
+	1. height=1 + backgorundColor
+	2. canvas
+
+网页验证码是干嘛的，是为了解决什么安全问题？
+	防止：多次发起请求，攻击网站的后台( 恶意灌水，恶意注册 )
+	CSRF : 跨站请求伪造
+
+title与h1的区别、b与strong的区别、i与em的区别？
+	h1 : body中用的 ,  一个页面只有一个
+	title : head中用的 , 一个页面只有一个
+
+	strong、em : 都是语义化标签
+	b、i : 不是语义化标签
+
+介绍一下标准的CSS的盒子模型？与低版本IE的盒子模型有什么不同的？
+	content-box
+	border-box
+
+
+CSS选择符有哪些？哪些属性可以继承？
+	id class tag 伪类 分组(ul,li) 包含(ul li) 属性选择器( [] )  
+	文本类都可以继承( color line-height text-algin ...  )
+
+
+CSS优先级算法如何计算？
+    !importent > style内联 > id > class >  tag > 继承
+ 
+
+CSS3新增伪类有那些？
+	:after :before  :target  :nth-of-type  :nth-child  :disable :enable
+
+如何居中div？如何居中一个浮动元素？如何让绝对定位的div居中？
+	position : absolute;  + 四个方向0   +  margin
+	position : absolute; + translate() 
+	flex + margin 
+
+	如何居中一个浮动元素 : 尝试一下
+
+
+
+display有哪些值？说明他们的作用。
+	block
+	none
+	inline
+	inline-block
+	flex
+
+position的值relative和absolute定位原点是？
+	relative : 自己
+	absolute : 有定位的祖先元素，如果都没有定位，就相对于body定位
+
+
+CSS3有哪些新特性？
+	圆角..
+
+
+请解释一下CSS3的Flexbox（弹性盒布局模型）,以及适用场景？
+	1. 适用移动端布局
+	2. 布局组合方法比较多
+	。。。。
+
+
+用纯CSS创建一个三角形的原理是什么？
+	border + width/height = 0  , 三个边框隐藏，剩下的边框就能形成一个三角形	
+
+一个满屏 品 字布局 如何设计?
+	1. 定位 : html,body{ width:100%; height:100%} 
+		上边的口：box1{ width:50%; height:50%; position:absolute; left:25%; top:0 }
+		左边的口：box2{ width:50%; height:50%; position:absolute; left:0; top:50% }
+		右边的口：box3{ width:50%; height:50%; position:absolute; left:50%; top:50% }
+	2. flex
+
+CSS常见兼容性问题？
+	1. CSS3的浏览器 -webkit-  -moz-
+	2. IE6 : PNG、双边距、opacity
+	3. CSS3只支持webkit内核 : 倒影 文字的描边  ... 	
+
+li与li之间有看不见的空白间隔是什么原因引起的？有什么解决办法？
+	ie7以下的：font-size : 0、li标签不折行
+
+
+为什么要初始化(reset样式)CSS样式。
+	有些标签有默认样式，会影响测量
+
+
+absolute的块跟正常文档流的块区别？
+	1. 占不占位置
+	2. width不设置的时候，由内容撑开
+	
+
+CSS里的visibility属性有个collapse属性值是干嘛用的？在不同浏览器下以后什么区别？
+	当一个元素的visibility属性被设置成collapse值后，对于一般的元素，它的表现跟hidden是一样的，
+	但如果是table相关的元素，例如table行，table group，table列，table column group，它的表现跟display:none一样，也就是说，它们占用的空间会释放。
+
+
+
+position跟display、margin collapse、overflow、float这些特性相互叠加后会怎么样？
+	position + display : 默认的宽按position
+	overflow : 有些情况失效
+	position + float : 默认的位置按position
+	总结：定位的优先级高 
+
+
+对BFC规范(块级格式化上下文：block formatting context)的理解？
+	解决的问题：高度塌陷 ( 形成了一个独立空间 )
+	哪些可以触发BFC规范：
+		1. overflow:hidden
+		2. position:absolute fixed
+		3. float : left
+		4. display : inline-block
+
+
+请解释一下为什么要设置浮动和什么时候需要清除浮动？清除浮动的方式
+	1. 让元素排成一行，解决左右布局问题
+	2. 浮动后会影响到后面的元素或者嵌套的元素。
+	3. after伪类、BFC规范、clear:both;
+
+
+移动端的布局用过媒体查询吗？
+	1. 适配手机
+	2. 一套代码即针对移动端又针对PC端。
+	3. 说说咋样的 @media all and (max-width=500){  }
+
+
+使用 CSS 预处理器吗？喜欢那个？
+	功能：sass > less
+
+
+CSS优化、提高性能的方法有哪些？
+	1. 别嵌套太深 ul li p a{}
+	2. CSS压缩
+	3. 尽量多去使用transform来实现位置的变化( translate3d(x,y,0) , 会开启手机GPU加速 )
+
+浏览器是怎样解析CSS选择器的？
+	ul li p a{} ：浏览器从右向左解析的
+
+
+在网页中的应该使用奇数还是偶数的字体？为什么呢？
+	偶数。
+		1. 有些老浏览器解析不了奇数
+		2. 设计师设计的时候，奇数不好用
+		3. 偶数适合应用更多的常见，比如除以2的时候，还是一个整数
+
+
+margin和padding分别适合什么场景使用？
+	margin两个块之间的距离
+	padding对内容进行位置的距离
+	边框也跟着变大，适合padding；边框大小不变，适合margin
+
+
+抽离样式模块怎么写，说出思路，有无实践经验？[阿里航旅的面试题]
+	banner.css : 命名要规范 
+	tab.css : 
+	drag.css : 
+		#banner{}
+		#banner .banner-item{}
+
+		#tab
+		#tab .tab-active{}
+		
+		#drag
+		#drag .drag-handle{}
+
+
+元素竖向的百分比设定是相对于容器的高度吗？
+	div { height:100% } ul{}  li{ height:100% }
+	元素的高度的100%相对于父元素的高度，跟祖先元素没关系。
+
+
+全屏滚动的原理是什么？用到了CSS的那些属性？
+	html,body{width:100%; height:100%; overflow:hidden;}
+
+
+什么是响应式设计？响应式设计的基本原理是什么？如何兼容低版本的IE？
+	媒体查询 @media
+		IE兼容：hack写法  .box{ _background: red; }
+
+视差滚动效果，如何给每页做不同的动画？（回到顶部，向下滑动要再次出现，和只出现一次分别怎么做？）
+	css : background-attachment : fixed 背景固定来实现的
+	js : onscroll事件 + document.body.scrollTop
+	现成的库：fullpage、swiper
+
+
+
+::before 和 :after中双冒号和单冒号 有什么区别？解释一下这2个伪元素的作用。
+    :: 创建一个元素，样式是添加到这个创建的元素上
+    : 样式直接添加到当前元素上
+
+
+
+如何去掉chrome记住密码后自动填充表单的黄色背景 ？
+	input:-webkit-autofill{}
+
+你对line-height是如何理解的？
+	一段文字在指定的行高中上下居中，line-height跟height相同，可以在容器中上下居中
+	line-height : 20px ( 1.5 ) 
+
+
+设置元素浮动后，该元素的display值是多少？
+	block
+	https://www.cnblogs.com/lmy-ms/p/6425504.html
+
+
+怎么让Chrome支持小于12px 的文字？
+	1. transform:scale(.5);
+	2. -webkit-text-size-adjust:none;  chorme27版本以下支持
+
+
+
+让页面里的字体变清晰，变细用CSS怎么做？
+	（-webkit-font-smoothing: antialiased;）
+	
+
+position:fixed;在android下无效怎么处理？
+	用JS去模拟
+
+如果需要手动写动画，你认为最小时间间隔是多久，为什么？（阿里）
+	setInterval(()=>{},16);   1000/60 -> 16.6666
+
+
+display:inline-block 什么时候会显示间隙？(携程)
+	font-size : 0
+	不折行
+	margin负值
+
+
+overflow: scroll时不能平滑滚动的问题怎么处理？
+	移动端的：
+		over-flow: auto;     /* winphone8和android4+ */
+		-webkit-overflow-scrolling: touch;    /* ios5+ */
+
+
+有一个高度自适应的div，里面有两个div，一个高度100px，希望另一个填满剩下的高度。
+	1. flex : 1
+	2. position:absolute; top:100px; bottom:0; 
+
+
+
+png、jpg、gif 这些图片格式解释一下，分别什么时候用。有没有了解过webp？
+	
+	png24 gif 透明  gif(逐帧动画)
+	jpg 不透明 颜色丰富
+	webp : 新的图片格式，谷歌出的 , 体积小
+
+
+什么是Cookie 隔离？（或者说：请求资源的时候不要让它带cookie怎么做）
+	1. xhr.withCredentials = true; 不发送cookie到服务器
+	2. 替代方案：不用cookie，采用localStorage
+
+
+style标签写在body后与body前有什么区别？
+	如果style写到了body的后面，页面结构已经渲染，但是样式没有，页面开始会无样式。
+
+
+介绍JavaScript的基本数据类型。
+	string number boolean
+	object 
+	null undefined
+	es6 : symbol
+
+说说写JavaScript的基本规范？
+	1. 定义变量的时候，一定要加var、let、const  
+	2. 缩进、命名、()、{}、分号添加正确
+	3. 面向对象的方法，要写到原型下面( ES6正常写就可以 )
+	4. 定义的变量和函数都要写到前面，调用写到后面，防止找不到
+	5. 内置对象尽量使用简写 [] {} //
+	6. 不同的定时器要清除
+	7. 事件不要重复添加
+
+
+JavaScript原型，原型链 ? 有什么特点？
+	原型：prototype
+		原型下的方法：在内存中存在一份，这样添加的方法可以节约性能
+	原型链：__proto__
+		对象自身上查找属性和方法，如果找不到，就通过原型链继续向外查找，
+		对象就可以继承来自原型链上的属性和方法。每一个对象的原型链最外层是Object.prototype。
+
+
+（堆：原始数据类型和 栈：引用数据类型），你能画一下他们的内存图吗？
+	var a = 1;
+	var b = a;
+	b = 2;
+
+	var a = {username : 'xiaoming'};
+	var b = a;
+	b.username = 'xiaobai';
+	a
+	
+
+Javascript如何实现继承？
+	es6 : extends
+	es5 : 
+		属性继承： 父类.call(this)
+		方法继承： 子类.prototype = new 父类()
+
+
+Javascript创建对象的几种方式？
+	自定义创建对象   var obj = new Object(); 
+	字面量创建对象   var obj = {};
+
+
+Javascript作用域链?
+	1. 内部调用外部，外部不能调用内部
+	2. 作用域链就近查找 var a = 10 ;   var a = 20;
+
+
+谈谈This对象的理解。
+	全局调用的时候，指向window
+	事件、面向对象
+	()=>{}的时候，this指向外层的
+
+eval是做什么的？
+	eval把字符串转成JS的方法
+		eval('function foo(){ console.log(123) }');
+		foo();
+
+
+什么是window对象? 什么是document对象?
+	window是JS的最外层对象
+	document是DOM的最外层对象
+	window包含document ->  window.document
+
+
+null，undefined的区别？
+	null : 主动表示未定义的方式
+	undefined : 被动表示未定义的方式
+	浏览器解析的时候，就会根据你写的进行处理
+		1 + null :  1 + 0  :  1
+		1 + undefined :  NaN 
+
+
+写一个通用的事件侦听器函数(机试题)。
+	
+	function bindEvent(elem, nowEvent , fn){
+		//addEventListner()
+		//attachEvent()
+		if(elem.addEventListner){
+			elem.addEventLinstner(nowEvent , fn , false);
+		}
+		else{
+			elem.attachEvent( 'on' + nowEvent , fn );
+		}
+	}
+
+
+["1", "2", "3"].map(parseInt) 答案是多少？
+
+	parseInt('1',0)  1
+	parseInt('2',1) NaN
+	parseInt('3',2) NaN
+
+	parseInt('0' , 2) 这个意义？
+		
+
+如何阻止冒泡和阻止默认事件？
+	ev.stopPropgation();
+	ev.preventDefault();
+
+
+什么是闭包（closure），为什么要用它？
+	自己看吧
+
+
+javascript 代码中的”use strict”;是什么意思 ? 使用它区别是什么？
+	use strict : 让JS形成严格模式
+		1. 创建变量的时候，必须var
+		2. eval()禁止使用
+
+
+
+如何判断一个对象是否属于某个类？
+	function Foo(){
+	}
+	var f1 = new Foo();
+	console.log(  f1.constructor  === Foo  );
+ 
+new操作符具体干了什么呢?
+	new操作符是调用构造函数或类的，返回值就是创建了一个对象，并且类或者构造函数里的this指向了这个创建出来的对象。
+
+    面向对象中有一个方法，当执行对象查找时，永远不会去查找原型链上的属性和方法，这个方式是？
+	
+	对象.hasOwnPortotype
+
+	function Foo(){
+		this.a = 10;
+	}
+
+	var f = new Foo();
+
+	f.toString
+
+	console.log( f.hasOwnProperty('a') );     //true
+	console.log( f.hasOwnProperty('toString') );  //false
+
+
+	var obj = {
+		a : 1,
+		b : 2,
+		c : 3
+	};
+
+	obj.getKeys();  // ['a','b','c']
+	
+
+
+对JSON的了解？
+	1. 属性必须要用双引号引起来
+	2. 值必须字符串、数组、对象 ( 值不能是函数 ) 
+	3. JSON.parse()  JSON.stringify()
+	4. JSON是不能添加注释的 
+
+
+[].forEach.call($$("*"),function(a){ a.style.outline="1px solid #"+(~~(Math.random()*(1<<24))).toString(16) }) 能解释一下这段代码的意思吗？
+	把语法先说一下，然后在整体聊一聊
+	
+
+js延迟加载的方式有哪些？
+	定时器、动态创建
+	<script src="xxx.js" defer></script> : 延迟加载JS,在window.onload前触发
+	JS放到body的后面去加载
+
+
+Ajax 是什么? 如何创建一个Ajax？
+	前后端无刷新数据交互，现在在一些框架中比较适合走分离式开发。
+	Ajax使用的步骤说一下。
+
+
+同步和异步的区别?
+	同步：按顺序执行，前面代码没执行完后面代码不执行
+	异步：异步的代码分成两部分，先执行第一部分，不影响后续代码的执行，回头再执行异步的第二段代码。
+		深入 ：聊一聊 event Loop : 事件循环机制
+	
+
+页面编码和被请求的资源编码如果不一致如何处理？
+	<script src="xxx.js" charset="UTF-8"></script>
+
+
+模块化开发怎么做？
+	commonjs规范：node中 module.exports  require
+	es6 : export default 或 export   import xxx from 'name.js'
+
+AMD（Modules/Asynchronous-Definition）、CMD（Common Module Definition）规范区别？
+	AMD和CMD都是前端模块化的规范
+		AMD : 预加载模块（提前的加载模块） :  require.js
+		CMD : 通用加载模块（按需加载模块） :  sea.js(历史产物)
+	commonjs规范是后端模块化的规范
+	注：自从webpack诞生之后，AMD和CMD已经没有太多的市场空间了
+
+谈一谈你对ECMAScript6的了解？ （面试概率70%）
+	自己背
+
+ECMAScript6 怎么写class类，为什么会出现class这种东西?
+	JS本身并不是一个面向对象的语言，当时JS诞生的时候就是一种函数式的语言。
+	JS模拟了一些JAVA和PHP当中的面向对象程序，用的就是构造函数的写法。
+	ES6中专门提供了标准的面向对象写法，class extends这样的方式，使得JS这门语言更加的强大了，更符合面向对象的一种语言了。
+	TS在ES6的基础上，有提供了更丰富面向对象写法。
+	
+
+异步加载的方式有哪些？
+	动态创建script，来异步加载JS文件
+	( 还有一个 <script src="xxx.js" async></script>  )
+	ajax、fetch，来异步加载JSON文件
+	new Image() , 异步加载图片的
+	iframe src 算一个吧
+	
+
+异步解决方案？	
+	promise function* async/await 回调函数 ....
+
+document.write和 innerHTML的区别?
+	document.write更新整个页面
+	innerHTML 更新指定的节点
+
+DOM操作——怎样添加、移除、移动、复制、创建和查找节点?
+	自己背吧
+
+.call() 和 .apply() 的含义和区别？
+	含义 : 改变this指向
+	call() : 参数不限制
+	apply() : 只有两个参数 ，第一个参数是指向 第二个参数（数组或类数组）
+
+
+数组和对象有哪些原生方法，列举一下？
+	数组：var arr = [];
+		arr.push() sort() shift() splice() map() filter()  ..... 
+	对象：
+		1. var obj = {};
+			obj.hasOwnPorperty()  toString()  valueOf()  .....
+		2. Object对象
+			Object.assign()  Object.definePorperty()  Object.getPorpertyOf()
+			Object.freeze() ....	
+
+
+JS 怎么实现一个类。怎么实例化这个类
+	1. es5和es6分别说一下怎么创建一个类和创建类的实例。
+
+
+JavaScript中的变量声明提升？
+	console.log(a);	
+	var a = 10;
+
+	var a;
+	console.log(a);	
+	a = 10;
+
+
+如何编写高性能的Javascript？
+	1. 减少DOM操作  , 文档碎片 【 重要的。。。。。。】
+	2. 少写闭包，防止内存泄露
+	3. 减少循环次数
+	4. 创建对象一般用简写( [] {} // )，面向对象的时候方法写到原型下面
+	5. 利用事件代理（委托）【 重要的。。。。。。】
+	6. 尽量把全局的变量和对象和获取元素，存成局部变量【 重要的。。。。。。】
+
+	function foo(){
+		var $box = $('#box');
+		$box.on();
+		$box.css();
+		$box.html();
+	}
+
+
+那些操作会造成内存泄漏？
+	1. 闭包
+	2. DOM与对象互相引用
+
+
+JQuery的源码看过吗？能不能简单概况一下它的实现原理？
+	基于面向对象的框架
+
+		function $(selector){
+			return new Jquery(selector);
+		}
+
+		function Jquery(selector){
+			this.elements = document.querySelectorAll(selector);
+		}
+		Jquery.prototype.css = function(attr , value){
+			for(var i=0;i<this.element.length;i++){
+				this.elements[i].style[attr] = value;
+			}
+		};
+		Jquery.prototype.html = function(value){
+			for(var i=0;i<this.element.length;i++){
+				this.elements[i].innerHTML = value;
+			}
+		};
+
+		$('#box').css('background','red');
+		$('#box').html('bbbbbbbbbb');
+
+
+jquery中如何将数组转化为json字符串，然后再转化回来？
+	JQuery中的param()、 serialize() 和 serializeArray()
+	{"username":"xiaoming" , "age" : "20"} ->  "username=xiaoming&age=20"
+	"username=xiaoming&age=20"  -> {"username":"xiaoming" , "age" : "20"}
+
+jQuery 的属性拷贝(extend)的实现原理是什么，如何实现深拷贝？
+	extend() : 实现原理  for in + 递归
+	var b = $.extend( {} , a );    //浅拷贝
+	var b = $.extend( true , {} , a );   //深拷贝
+
+
+jquery.extend 与 jquery.fn.extend的区别？
+	jquery.extend  : 1. 对象的拷贝   2. 实现JQ插件 : $.aaa()   $.bbb() (JQ自带的，$.ajax()  $.type()  $.trim()  $.get() ... )
+	jquery.fn.extend : 实现JQ插件 :  $().aaa()    $().bbb()  (JQ自带的 , $().css()   $().html()   $().on()   $().each() .... )
+
+
+谈一下Jquery中的delegate(),on()的区别？
+	delegate() :  专门实现事件委托的
+	on() : 事件的整体操作方法（功能强大，包含delegate()方法）
+
+
+Jquery与jQuery UI有啥区别？
+	vue 和 miniui
+	react 和 antd
+	phoneGap 和 mui
+	
+jQuery和Zepto的区别？各自的使用场景？
+	Zepto是移动端的小型JQ框架，适合移动端，文件比价小，提供了一些移动端事件。
+
+
+Zepto的点透问题如何解决？
+	教程：https://www.cnblogs.com/zldream1106/p/3670988.html
+	点透的问题：一个层 , 层下面是一个a链接 , 点击让层隐藏，触发a的链接。
+	解决：其中最常使用的还是fastclick，地址 ：https://github.com/ftlabs/fastclick
+
+
+需求：实现一个页面操作不会整页刷新的网站，并且能在浏览器前进、后退时正确响应。给出你的技术实现方案？
+	1. hash + onhashchange
+	2. history + pushState() + onpopstate
+
+
+
+如何判断当前脚本运行在浏览器还是node环境中？（阿里）
+	
+	global : node环境有这个
+	window : 浏览器有这个
+
+
+移动端最小触控区域是多大？
+	44px * 44px
+
+
+
+把 Script 标签 放在页面的最底部的body封闭之前 和封闭之后有什么区别？浏览器会如何解析它们？
+	从实际效果来看，应该是没有区别的。但是放在 html 结束标签之前应该是不规范的(通不过 HTML 验证)，放在 body 结束之前才对。当然你完全可以选择无视验证。
+
+
+移动端的点击事件的有延迟，时间是多久，为什么会有？ 怎么解决这个延时？
+（click 有 300ms 延迟, 采用touch事件 ）
+ 
+
+
+
+Node.js的适用场景？
+(如果会用node)知道route, middleware, cluster, nodemon, pm2, server-side rendering么?
+	pm2 : node进程管理工具,可以利用它来简化很多node应用管理的繁琐任务,如性能监控、部署等。
+
+
+什么是“前端路由”?什么时候适合使用“前端路由”? “前端路由”有哪些优点和缺点?
+	 “前端路由”缺点 ：SEO搜索引擎优化
+
+
+知道什么是webkit么? 知道怎么用浏览器的各种工具来调试和debug代码么?
+	chrome devtools 打断点
+
+
+如何测试前端代码么? 知道BDD, TDD, Unit Test么? 知道怎么测试你的前端工程么(mocha, sinon, jasmin, qUnit..)?
+	mocha单元测试库 + chai断言库
+
+前端templating(Mustache, underscore, handlebars)是干嘛的, 怎么用?
+简述一下 Handlebars 的基本用法？
+简述一下 Handlerbars 的对模板的基本处理流程， 如何编译的？如何缓存的？
+
+用js实现千位分隔符?(来源：前端农民工，提示：正则+replace)
+
+	Number(834879347384).toLocaleString()
+
+	num.toString().replace(/(?=(?!^)(\d{3})+$)/g, ',')
+	?= ?!
+
+检测浏览器版本版本有哪些方式？
+	navigator.useAgent
+
+我们给一个dom同时绑定两个点击事件，一个用捕获，一个用冒泡，你来说下会执行几次事件，然后会先执行冒泡还是捕获
+	两次 
+	先执行捕获，然后再执行冒泡
+
+
+react  vue  

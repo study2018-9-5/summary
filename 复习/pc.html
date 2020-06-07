@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<meta name="viewport" content="initial-scale=1,maximum-scale=1, minimum-scale=1">
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		body,html{
+			width: 100%;
+			height: 100%;
+			min-width: 700px;
+		}
+		
+		ul{
+			list-style: none;
+		}
+		.box{
+			width: 99%;
+			height: 100%;
+			margin: 0 auto;
+			background: #ccc;
+		}
+		.box .header{
+			width: 100%;
+			height: 50px;
+			text-align: center;
+			line-height: 50px;
+			margin: 0 auto;
+			background: red;
+		}
+		.box .header .left{
+			width: 100px;
+			height: 50px;
+			float: left;
+			background: red;
+		}
+		.box .header .right{
+			width: 100%;
+			height: 50px;
+			/*float: right;*/
+			background: yellow;
+		}
+
+		.box .main{
+			width: 100%;
+			height: 100%;
+			margin: 0 auto;
+			background: blue;
+		}
+		.box .main ul{
+			width: 100%;
+			height: 100%;
+			margin: 0 auto;
+			background: #ccc;
+		}
+		.box .main ul li{
+			width: 23%;
+			height: 48%;
+			float: left;
+			margin: 1%;
+			border: 2px solid black;
+			background: #f60;
+			box-sizing: border-box;
+		}
+		.box .main ul li:nth-of-type(1){
+			margin-left: 0;
+		}
+		.box .main ul li:nth-of-type(4){
+			margin-right: 0;
+		}
+		.box .main ul li:nth-of-type(5){
+			margin-left: 0;
+		}
+		.box .main ul li:nth-of-type(8){
+			margin-right: 0;
+		}
+		.top{
+			width: 98%;
+			height: 33%;
+			border-collapse: collapse;
+			margin: 1%;
+		}
+		.top td{
+			width: 50%;
+			height: 25%;
+			line-height: 25%;
+			text-align: center;
+			border: 1px solid black;
+		}
+		
+		.bottom{
+			width: 98%;
+			height: 50%;
+			text-align: center;
+			margin: 1%;
+			box-sizing: border-box;
+			background: white;
+		}
+		.bottom .bottom-t{
+			width: 100%;
+			height: 20%;
+			line-height: 20%;
+			background: #ff0;
+		}
+		.bottom .bottom-t .left{
+			width: 60%;
+			height: 100%;
+			line-height: 100%;
+			float: left;
+			background: #fc0;
+		}
+		.bottom .bottom-t .right{
+			width: 40%;
+			height: 100%;
+			line-height: 100%;
+			float: left;
+			background: #f10;
+		}
+		.bottom .bottom-b .left{
+			width: 60%;
+			height: 80%;
+			float: left;
+			background: #fc0;
+		}
+		.bottom .bottom-b .right{
+			width: 40%;
+			height: 80%;
+			float: left;
+			background: #f10;
+		}
+		.bottom .bottom-b .right span{
+			width: 100%;
+			height: 16%;
+			display: block;
+			background: #f10;
+		}
+		button{
+			width: 60px;
+			height: 30px;
+			margin-top: 5px;
+			float: right;
+			margin-right: 5px;
+			border: 0;
+
+		}
+		@media screen and  (max-width:700px) {
+			body{
+				font-size: 12px;
+			}
+		}
+		@media screen and  (min-width:701px) and (max-width:900px){
+			body{
+				font-size: 14px;
+			}
+		}
+		@media screen and  (min-width:901px) {
+			body{
+				font-size: 18px;
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<header class="header">
+			<div class="left">菜单</div>
+			<div class="right">我打算的法师打发粉色粉色的房产税的</div>
+		</header>
+		<main class="main">
+			<ul>
+				<li>
+					<table class="top">
+						<tr>
+							<td>诊室：</td>
+							<td>3c201</td>
+						</tr>
+						<tr>
+							<td>科别：</td>
+							<td>心血管内科</td>
+						</tr>
+						<tr>
+							<td>医师：</td>
+							<td>王思博</td>
+						</tr>
+						<tr>
+							<td>等待人数：</td>
+							<td>5</td>
+						</tr>
+					</table>
+					<div class="bottom">
+						<div class="bottom-t">
+							<div class="left">正在就诊：</div>
+							<div class="right">方国强</div>
+						</div>
+						<div class="bottom-b">
+							<div class="left">等待就诊：</div>
+							<div class="right">
+								<span>方国强</span>
+								<span>方国强</span>
+								<span>方国强</span>
+								<span>方国强</span>
+							</div>
+						</div>
+					</div>
+					<button>详情</button>
+				</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+				<li>5</li>
+				<li>6</li>
+				<li>7</li>
+				<li>8</li>
+			</ul>
+		</main>
+	</div>
+</body>
+</html>

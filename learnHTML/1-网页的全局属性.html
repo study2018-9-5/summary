@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML全局属性</title>
+</head>
+<body>
+  <div class="id">id元素在网页内的唯一标识</div>
+  <div class="class">class对网页元素进行分类</div>
+  <div class="title">title元素附加的说明</div>
+  <div tabindex="-1">
+    tabindex这段文字可以获取焦点：
+    1.当tabindex为负数时，该元素能获取焦点但是不参与Tab键对元素的遍历。
+    2.当tabindex为0时，该元素参与Tab键对元素的遍历。
+    3.当tabindex为正整数时，该元素按照从小到大的顺序，参与Tab键对元素的遍历。
+  </div>
+  <button accesskey="s">accesskey为指定获得焦点的快捷键(Alt+s)</button>
+  <div style="color: red;">style为css样式</div>
+  <div hidden>hidden是一个布尔属性，表示当前元素不在与页面相关</div>
+  <div lang="en">lang="en"为英文</div>
+  <div dir="ltr">dir：为ltr时从左到右顺序</div>
+  <div contenteditable="true">
+    contenteditable鼠标点击，本内容可修改。
+    该属性是枚举属性不是布尔属性。
+  </div>
+  <div hidden contenteditable="true" spellcheck="true">spellcheck带有拼写检查功能：暂不好用</div>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>盒子垂直水平居中</title>
+	<style>
+		.box{
+			width: 300px;
+			height: 300px;
+			background: #0f0;
+			position: relative;
+		}
+		
+		.box div{
+			width: 200px;
+			height: 200px;
+			background: #f00;
+			float: left;
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			margin: auto;
+		}
+
+		/*.box div{
+			width: 200px;
+			height: 200px;
+			background: #f00;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			margin-top: -100px;  需要知道子元素的大小
+			margin-left: -100px;
+		}*/
+
+		/*.box div{
+			width: 200px;
+			height: 200px;
+			background: #f00;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%,-50%);
+		}*/
+
+		/*.box1{
+			width: 300px;
+			height: 300px;
+			text-align: center;
+			background: #0f0;
+		}
+		.box1 div{
+			width: 200px;
+			height: 200px;
+			background: #f00;
+			display: inline-block; 
+			vertical-align: middle;
+		}
+		.box1 span{
+			width: 0;
+			height: 100%;
+			vertical-align: middle;
+			display: inline-block;
+		}*/
+
+
+		/*.box{ 
+			width:300px; 
+			height:300px; 
+			background:#ff0; 
+			display:flex;
+		}
+		.box div{ 
+			width:200px; 
+			height:200px; 
+			background:#0f0; 
+			margin:auto;
+		}*/
+
+		/*.box{ 
+			width:300px; 
+			height:300px; 
+			background:#ff0; 
+			display:flex; 
+			justify-content:center; 
+			align-items:center;
+		}
+		.box div{ 
+			width:200px; 
+			height:200px; 
+			background:#0f0; */
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<div></div>
+	</div>
+
+	<div class="box1">
+		<div></div>
+		<span></span>
+	</div>
+</body>
+</html>

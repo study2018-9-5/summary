@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>自动换行、省略号</title>
+	<!-- <style>
+		div{
+			width: 400px;
+			height: 200px;
+			background: #0f0;
+			word-wrap:break-word;     /*截断词 */
+			/*word-break:break-all;*/ /*截断字母 */
+			margin: 0 auto;
+		}
+	</style> -->
+	
+	<style>
+		div{
+			width: 400px;        /*容器宽度*/
+			height: 200px;
+			background: #0f0;
+			white-space: nowrap; /*强制文本在一行显示*/
+			overflow: hidden;    /*溢出内容为隐藏*/
+			text-overflow: ellipsis; /*溢出文本显示省略号*/
+			margin: 0 auto;
+			cursor: wait;
+		}
+	</style>
+</head>
+<body>
+	<div>
+		My name is Li Zhiming,I'm 20 years old , and graduated from Guangzhou finance occupation school, my major is the financial affairs. In the past 2 years , I worked as a customer service, sales, insurance and so on, I hope to get more learning opportunities to enrich my experience.
+	</div>
+</body>
+</html>

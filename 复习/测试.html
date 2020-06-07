@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>test</title>
+	<style>
+		#container{		
+			height: 500px;
+			min-width: 1000px;
+		}
+		#container .left{
+			width: 35%;
+			height: 100%;
+			background: rgba(0,255,230,.5);
+			float: left;
+		}
+		#container .right{
+			width: 65%;
+			height: 100%;
+			background: green;
+			overflow: hidden;
+		}
+		::-webkit-input-placeholder{
+			color: red;
+		}
+	</style>
+</head>
+<body>
+	<input type="text" list="cars" placeholder="wangsibo">
+	<datalist id="cars">
+		<option value="1"></option>
+		<option value="2"></option>
+		<option value="3"></option>
+	</datalist>
+	<div id="container">
+		<div class="left">left</div>
+		<div class="right">right</div>
+	</div>
+	<link rel="stylesheet" href="">
+	<base href="">
+	<track>111</track>
+	<script>
+		// const a=5;
+		setTimeout(function(){
+			console.log(1);
+		},1000);
+		console.log(2);
+		
+		function foo(cd){
+			setTimeout(function(){
+				console.log(1)
+				cd()
+			},1000)
+		}
+		
+		foo(function(){
+			console.log(2)
+		})
+		
+		var str = "C3选择器.html"
+		// var chinese = /^[\u4e00-\u9fa5]+$/;
+		// if (chinese.test(str)) {
+		// 	console.log(111)
+		// }else{
+		// 	console.log(222)
+		// }
+
+		//检测是否为中文，true表示是中文，false表示非中文
+        function isChinese(str){
+        	var num = str.length;
+        	var num1 = 0
+        	for (var i = 0; i < str.length; i++) {
+        		if(/^[\u3220-\uFA29]+$/.test(str[i])){
+        			num1++
+	            }
+        	} 
+        	console.log(num+num1) 
+        }
+        isChinese(str)
+
+		// let array = [1, 1, 1, 1, 2, 3, 4, 4, 5, 3];
+		// let set = new Set(array);
+		// console.log(set);
+
+		let array = Array.from(new Set([1, 1, 1, 2, 3, 2, 4]));
+		console.log(array);
+		
+		var d = new Date() //2018年10月11日
+		console.log(d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate())
+		
+	</script>
+</boDy>
+</html>

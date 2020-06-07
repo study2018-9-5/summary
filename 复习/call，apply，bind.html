@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		var myobj1 ={
+			name:"obj1",
+			getName:function(){
+				console.log(this.name);
+				
+			}
+		}
+
+		var myobj2 ={
+			name:"obj2",
+			getName:function(){
+				console.log(this.name);
+			}
+		}
+
+		myobj1.getName.call(myobj2);
+		myobj1.getName.apply(myobj2);
+		console.log(myobj1.getName.bind(myobj2));
+
+
+		/*  call  改变this指向,自动执行函数， 传入参数 ( 个数多个)
+			apply 改变this指向，自动执行函数 ， 只能传入一个参数（数组）
+			bind 改变this指向，不会自动执行函数，加上（）执行,传入参数 ( 个数多个)
+		 */
+	</script>
+</body>
+</html>

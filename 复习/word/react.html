@@ -1,0 +1,367 @@
+
+
+const {Provider, Consumer} = React.createContext('我是默认值');
+
+class ContextCom extends Component {
+	constructor(){
+		this.state = {
+			message : 'hello'
+		};
+	}
+	render(){
+		return (
+			<div>
+				<Provider value={this.state.message}>
+					<SonCom />
+				</Provider>
+			</div>
+		)
+	}
+}
+
+class SonCom extends Component {
+	render(){
+		return (
+			<div>
+				<GanderSonCom />
+			</div>
+		)
+	}
+}
+
+class GanderSonCom extends Component {
+	render(){
+		return (
+			<div>
+				<Consumer>
+				{ (message)=>{
+					message
+				} }
+				</Consumer>
+			</div>
+		)
+	}
+}
+
+
+------------------------------------------------------
+
+
+redux中间件 : redux-thunk、redux-sage  ...
+express中间件 : body-parser、cookie-parser ...
+
+------------------------------------------------------
+
+
+高阶组件就是一个函数，且该函数接受一个组件作为参数，并返回一个新的组件
+高阶函数，接收一个函数作为参数，并返回一个新的函数
+
+	var Header = connect(HeaderUI);
+
+------------------------------------------------------
+
+
+现在各大浏览器通常用采用的垃圾回收有两种方法：标记清除、引用计数。	
+
+
+------------------------------------------------------
+
+受控组件：把表单跟数据绑定在一起进行的操作，其值由React控制的输入表单元素称为“受控组件”。
+
+	<input type="text" value={this.state.message} onChange={this.handleChange} />
+
+		this.handleChange : 改变this.state.message -> 表单就会跟着变
+
+
+非受控组件：直接操作表单的DOM，不涉及到数据。
+
+	<input type="text" onChange={this.handleChange} />
+
+	this.handleChange : ev.target.value  ->  表单的后续操作
+
+------------------------------------------------------
+
+单向数据流：数据的改变单方向的，父组件改变数据才可以影响到子组件的变化
+(单向数据流方式使用一个上传数据流和一个下传数据流进行双向数据通信，两个数据流之间相互独立。)
+
+	父子通信： props属性   子父通信 :  回调函数
+
+		class ParentCom extends Component {
+			constructor(){
+				this.state = {
+					message : 'hello'
+				};
+			}
+			render(){
+				<ChildCom message={this.state.message} />
+			}
+		}
+
+		class ChildCom extends Component {
+			render(){
+				<div>
+					{ this.props.message }
+				</div>
+			}
+		}	
+
+------------------------------------------------------
+
+	class ParentCom extends Component {
+		render(){
+			<ChildCom>
+				<h1>aaaaaaaaaaaaa</h1>
+			</ChildCom>
+		}
+	}
+
+	class ChildCom extends Component {
+		render(){
+			<div>
+				{ this.props.children }   // <h1>aaaaaaaaaaaaa</h1>
+			</div>
+		}
+	}
+
+------------------------------------------------------
+
+setState() : 在内部做的是异步的处理，好处就是针对多次触发的时候可以进行合并，
+减少diff算法的次数，提升性能。
+
+setState() : 并不是所有的操作都是异步的，原生的异步和事件的时候调用
+setState()的时候就做同步操作。	
+
+setState() : 响应式数据变化，触发组件的render()方法，也会触发子组件的
+render()方法，无论数据有没有改变，
+             只要setState()被调用了，那么就会触发render()
+	注：这里有一个性能隐患，数据不变的时候调用setState()，不应该去重新
+	render()，怎么做到呢？
+	shouldComponentUpdate或者PureComponent
+
+	class ParentCom extends Component {
+		constrcutor(){
+			setInterval(()=>{
+				this.setState({});
+			},1000);
+		}
+		render(){
+			<ChildCom>
+				
+			</ChildCom>
+		}
+	}
+
+	class ChildCom extends PureComponent {
+		render(){   //把Component改成PureComponent，当setState()没有变化的时候，
+		这时render()就不触发了
+			<div>
+				
+			</div>
+		}
+	}
+
+setState() : 参数 : 1参 :  {}  |  函数    2参  :  异步的回调函数
+
+	this.setState({
+		count : this.state.count + 1
+	});
+	this.setState({
+		count : this.state.count + 1
+	});
+	this.setState({
+		count : this.state.count + 1
+	});
+
+	count -> 1
+
+
+	this.setState((previousState)=>{
+		return {
+			count : previousState.count + 1
+		};
+	});
+	this.setState((previousState)=>{
+		return {
+			count : previousState.count + 1
+		};
+	});
+	this.setState((previousState)=>{
+		return {
+			count : previousState.count + 1
+		};
+	});
+
+	count -> 3
+
+------------------------------------------------------	
+
+	创建组件的方式：
+		1. 类组件 -> 有状态组件 -> 生命周期和state状态，有props。 
+				-> 复杂的组件  -> 好处：功能强大
+		2. 函数组件 -> 无状态组件 -> 没有生命周期和state状态，有props。 
+				->  简单的组件  -> 好处：性能好，加载快
+
+------------------------------------------------------
+
+	什么是 React 的 refs ，为什么它们很重要？	
+		访问原生DOM元素或组件实例。
+
+------------------------------------------------------
+
+	React中的key属性是什么，为什么它们很重要？
+		帮助React跟踪列表元素的身份，这样当添加删除列表的时候，
+		可以减少diff对比的次数，提升性能。
+
+		旧的VDOM(跟踪了元素的身份) -> diff算法(两次VDOM中相同的身份就不用对比了)
+		新的VDOM(跟踪了元素的身份)
+
+------------------------------------------------------
+
+	在哪个生命周期事件中你会发出 AJAX 请求，为什么？
+	
+		AJAX 请求应该在 componentDidMount 生命周期事件中。
+		这个生命周期可以保证DOM已经准备就绪了，可以ajax数据渲染啦。	
+
+------------------------------------------------------
+
+	shouldComponentUpdate 应该做什么，为什么它很重要？
+		生命周期，当return返回true的时候，会触发 render()、componentDidUpdate()；
+		当return返回false的时候，不会触发render()、componentDidUpdate()。
+
+		做什么？选择性重新渲染组件，想重新渲染就返回true，不想重新渲染就返回false。
+		主要的目的还是提升react的性能。
+		
+		shouldComponentUpdate参数：1参：previousProps、2参：previousStates	
+
+------------------------------------------------------
+
+	描述事件在React中的处理方式。
+
+		事件怎么用的？ onClick={}  onChange={}   onKeyDown={}
+
+		事件的指向问题？this.handleChange = this.handleChange.bind(this)
+
+		事件机制？内部自己实现的，不是原生的事件调用。自己实现的是事件委托的模式，
+		减少事件的添加次数，提升性能。
+
+
+------------------------------------------------------		
+
+
+	//JSX语法去写
+	class ChildCom extends PureComponent {
+		render(){
+			return (
+				<div className="box">
+					aaaaaaaaaa	
+				</div>
+			);  
+		}
+	}
+
+	//JS语法去写，React.createElement可以用不JSX语法
+	class ChildCom extends PureComponent {
+		render(){
+			return React.createElement('div',{ className : 'box' },'aaaaaaaaa');  
+		}
+	}
+
+------------------------------------------------------	
+
+	描述一下redux的流程？
+		
+		流程：
+			初始状态 ->  store的getState() -> components
+			更新状态 -> components -> action任务用dispatch()方法 ->  
+			reducer纯函数 ->  改变新的state->  
+			store的subscribe()  -> 重新render()我们的compnents 
+
+
+		function reducer(state , action){
+			if(action.type === '任务的名字'){
+				return action.payload;
+			}
+			else{
+				return state;
+			}
+		}
+
+		var store = createStore(reducer , { count : 1 });
+
+		store.getState().count
+		store.dispatch({ type : '任务的名字' , payload : '传递的值' });
+		store.subscribe(()=>{   监听状态的改变
+			<App />
+		});
+
+		其他：combineReducers针对多个reducer函数
+			  applymiddlewear配置中间件
+
+	
+	描述一下react-redux的流程？
+
+	<Provider store={ store }>
+		<App />
+	</Provider>
+
+	UI组件
+		class HeaderUI extends Component{}
+
+	容器组件
+		function mapStateToProps(state){
+			return {};
+		}
+		funciton mapDispatchToProps(dispatch){
+			return {};
+		}
+	
+	var Header = connect(mapStateToProps , mapDispatchToProps)(HeaderUI);
+
+------------------------------------------------------	
+
+	问道你对react-native有多少了解？
+		var { stylesheet , View , Text , Image } from 'react-native'
+		expo工具进行调试，也下载过react-native脚手架
+
+------------------------------------------------------
+
+	对虚拟DOM与diff算法的了解？
+		虚拟DOM	: 两个虚拟DOM树进行diff对比，对比完把要修改的值进行真实的渲染
+
+		diff算法：
+			1. 同层级比较
+			2. key属性
+			3. shouldComponentUpdate
+			4. 不同组件之间用不对比，直接替换 
+
+------------------------------------------------------
+	react跟vue对比：
+		相同点：
+			1. 虚拟DOM、diff算法
+			2. 声明式渲染，响应数据变化
+			3. 都有第三方路由模块、状态管理模块、脚手架等。
+			4. 都有组件的概念
+			5. 生态系统都比较成熟、有对应的原生APP、SSR服务端渲染、第三方UI库等技术。
+
+		不同点：
+			1. vue有指令、react没有指令
+			2. vue采用模版方式来写HTML结构、react采用JSX语法来写HTML结构
+			3. vue是MVVM框架、react是一个MVC框架中的V层
+			4. 组件模式：vue采用 .vue文件 、react采用 .js文件配合
+				.css文件或CSS-in-JS方案
+			5. vue功能更加丰富(keep-alive、过滤器、计算属性)，react侧重极简的API，
+				建议多使用原生JS。
+
+------------------------------------------------------										
+	git使用过程中，如果你在开发着业务，突然另一个分支有一个bug要改，你怎么办
+
+		git stash       //将本次修改存到暂存区（紧急切换分支时）
+		git stash pop   //将所有暂存区的内容取出来	
+
+------------------------------------------------------
+
+	react的时候，状态管理 -> redux + react-redux
+
+	新的状态管理框架：mobx（采用装饰器的写法，这样用起来和比较像vuex的方式）		
+
+------------------------------------------------------	

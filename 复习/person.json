@@ -1,0 +1,16 @@
+{
+	"firstName": "xiaoMing",
+	"age": 18,
+	"height": 172.3,
+	"isMarried": false,
+	"exes": [{
+		"name": "xiaoHua",
+		"age": 5
+	}, {
+		"name": "xiaoCao",
+		"age": 10
+	}, {
+		"name": "xiaoShu",
+		"age": 15
+	}]
+}

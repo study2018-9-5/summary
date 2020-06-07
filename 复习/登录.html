@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="jquery-3.3.1.js"></script>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		html,body{
+			width: 100%;
+			height: 100%;
+			background: red;
+			font-family: "微软雅黑";
+			font-size: 12px;
+			color: #fff;
+		}
+		.box{
+			width: 100%;
+			height: 100%;
+			position: relative;
+			background: #234567;
+		}
+		.box .top{
+			width: 100%;
+			height: 350px;
+			position: relative;
+			background: blue;
+		}
+		.image{
+			left: 50px;
+			bottom: 20px;
+			position: absolute;
+		}
+		.login{
+			width: 300px;
+			height: 300px;
+			position: absolute;
+			right: 100px;
+			top: 200px;
+			background: #fff;
+		}
+		span{
+			position: absolute;
+			bottom: 10px;
+			left: 50%;
+			transform: translate(-50%);
+			color: rgba(255,255,255,0.5);
+		}
+		.lgtop{
+			height: 40px;
+			font-size: 18px;
+			color: #2aa3dd;
+		}
+		.lgtop p{
+			width: 150px;
+			height: 40px;
+			float: left;
+			line-height: 40px;
+			text-align: center;
+		}
+		.lgtop .tl{
+			background: #fff;
+		}
+		.lgtop .tr{
+			background: #d4edf8;
+		}
+		.center{
+			width: 260px;
+			height: 220px;
+			margin: 20px;
+			background: red;
+		}
+		input{
+			width: 260px;
+			height: 40px;
+			margin-bottom: 10px;
+			background: #e9f6fb;
+			font-size: 14px;
+			color: #2aa3dd;
+			padding-left: 10px;
+			box-sizing: border-box;
+			border: 1px solid #d4edf8;
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<div class="top">
+			<div class="image">
+				<img src="1.png" alt="">
+			</div>
+		</div>
+		<div class="login">
+			<div class="lgtop">
+				<p class="tl">登录</p>
+				<p class="tr">注册</p>
+			</div>
+			<div class="center">
+				<input type="text" placeholder="账号：" class="username">
+				<input type="password" placeholder="密码:" class="password">
+				<input type="text" placeholder="验证码：">
+			</div>
+		</div>
+		<span>版权文字版权文字版权文字版权文字版权文字版权文字版权文字版权文字版权文字版权文字版权文字版权文字版权文字版权文字版权文字版权文字</span>
+	</div>
+</body>
+</html>

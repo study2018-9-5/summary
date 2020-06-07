@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML多媒体标签</title>
+</head>
+<body>
+  <!-- 
+    controls：是否显示控制栏         默认true
+    autoplay：是否自动播放           默认false
+    loop：是否循环播放               默认true
+    muted：是否静音                  默认true
+    poster：视频播放器的封面图片的url
+  -->
+  <video src="./video/video.mp4" controls autoplay poster="./image/image.png" width="600px"></video>
+
+  <!-- 为了避免浏览器不支持视频格式可以使用source标签，放置同一个视频的多种格式 -->
+  <video controls autoplay loop muted poster="./image/image.png" width="600px">
+    <source src="./video/sing-song.mp4" type="video/mp4">
+    <track label="英文字幕" src="./subtitle.vtt" kind="subtitles" srclang="en" default>
+    <p>你的浏览器不支持HTML5视频</p>
+  </video>
+
+  <!-- audio放置音频，使用方法与video基本一致。 -->
+</body>
+</html>

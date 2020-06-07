@@ -1,0 +1,159 @@
+1. 项目中搜索功能的实现:
+	把搜索的关键字通过ajax方式传递给后端，后端拿到关键字返回对应的数据列表。
+	
+	<input />  onInput事件边输入边监听，优化手段函数节流(快速输入的时候只会触发最后一次)
+	
+	clearTimeout(timer);
+	timer = setTimeout(()=>{
+		
+		axios.get('search.php?key='+searchKey,(res)=>{
+			res.data :  searchKey所对应的数据列表
+			this.setState({
+				listData : res.data
+			});
+		});
+
+	},200);
+
+
+2. 数据展示时冲突问题的处理	:
+	用JQ做的搜索展示，再次请求的时候，要先清空之间的搜索内容，再展示新的搜索数据。
+
+
+3. 项目的技术选型，jq和vue的区别，vue的优点？
+	jq ：简化原生JS的操作，提供了JS的兼容性处理，提供了很多好用的方法。
+	vue : 数据驱动的框架，所有的操作是围绕着数据，不用关心DOM的渲染。
+
+	vue优点：适合单页面开发，适合分离式开发，适合大量数据与DOM结合的开发。
+		组件、状态管理、路由、脚手架，一些相关的UI库和大量的插件。
+
+4. Vue父子或兄弟组件的通信
+	父子 ：props传递
+	子父 : $.emit(自定义事件)
+	兄弟 : var bus = new Vue() (数据总线)  |  状态管理vuex
+
+5. 什么时候入门前端，选前端的理由
+	
+
+6. 用过react和angular吗？
+
+7. Es6中let、const和var区别，说下块级作用域？
+	if(){
+		let a = 10;
+	}
+	let a
+	let a
+
+8. 箭头函数，箭头函数中this的指向，给出实际场景并说出其中this的指向
+
+9. 移动端项目适配的实现？
+	cssrem插件去换算 px -> rem
+	JS去设置font-size    
+	vw去设置font-size
+	1. 媒体查询
+	2. rem    
+	3. 弹性盒模型
+
+10.	Flex布局？
+	display:flex;
+	flex-duration
+	justify-content
+	align-items
+	flex : 1
+
+11. Cookie、sessionstorage、localstorage的区别，如果获取localstorage的所有key？
+
+	for ... in 
+	Object.keys( localstorage )
+
+12. Vue生命周期？
+	beforeCreate
+	Create
+	beforeMount
+	mounted
+	beforeUpdate
+	updated
+	beforeDestory
+	destoryed
+
+13. 说一下BFC ? 
+	外层不影响到当前这个独立的容器
+	触发BFC的样式有哪些
+
+14. 了解哪些设计模式？
+	工厂模式、观察者模式(JS事件，promise)、装饰器模式
+	MVVM、MVC、MVP
+
+15. 说一下稳定和不稳定的排序有哪些？
+	1. 冒泡、快速、插入、希尔。。。
+
+16.	最长公共子序列？
+
+	['abcdef' , 'abcwwwww' ,  'dfdfabcdfkfkff']	 + 递归去做
+
+17. 
+	'border_left_width'	 ->  'borderLeftWidth'
+
+	var str = 'border_left_width'.replace(/_([^_]+)/g , function($0,$1){
+		return $1.substring(0,1).toUpperCase() + $1.substring(1);
+	});		
+
+18. 深拷贝
+	for in + 递归
+	JSON.parse + JSON.stringify
+
+19. 作为前端开发，如果遇到资源无法加载，是什么问题，以及如何解决
+	看控制台，看资源状态码  404  500  403   
+	看是否在服务器环境下请求资源
+
+20. 
+	永久重定向301 : 搜索引擎会按照定向后来搜索
+	临时重定向302 : 搜索引擎会按照定向前来搜索
+
+	303和302状态码有着相同的功能，但是303明确表示客户端应当采用get方法获取资源，
+	这点与302状态码有区别。 
+
+21. 
+	原生js实现发布订阅模式
+
+	订阅者一定是多个人
+	elem.subscribe('click',function(){
+		console.log(1);
+	});	
+	elem.subscribe('click',function(){
+		console.log(2);
+	});	
+
+	elem.publish('click');    // 1 , 2 
+
+
+	subscribe(document,'custom_one',function(){
+		console.log(1);
+	});
+
+	subscribe(document,'custom_one',function(){
+		console.log(2);
+	});
+
+	publish(document,'custom_one');
+
+
+	function subscribe(elem , events , fn){
+		elem.listens = elem.listens || {};
+		elem.listens[events] = elem.listens[events] || [];
+		elem.listens[events].push(fn);
+	}
+
+	function publish( elem , events ){
+		for(var i=0;i<elem.listens[events].length;i++){
+			elem.listens[events][i]();
+		}
+	}
+
+var a = [-122,34 ,343,544,-22].map(function(item){
+	return '' + item;
+}).sort(function(n1,n2){
+	return n1.charAt(n1.length-1) - n2.charAt(n2.length-1);
+}).map(function(item){
+	return parseInt(item);
+});

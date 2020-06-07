@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>字符串</title>
+</head>
+<body>
+	<script>
+		var str = "王hello world";
+		var str1 = new String("0123456789");
+		console.log(str.length);
+		console.log(str.charAt(1));     //查找索引为1的位置的字母
+		console.log(str.charCodeAt(0)); //查找索引为0的位置的unicode编码
+		console.log(str.replace('王','wangsibo')); //查字符串中的“王”替换成“wangsibo”
+		console.log(str1.slice());	    //一个参数不传，截取整个字符串 结果：0123456789
+		console.log(str1.slice(0));     //从索引为0的字符，截取到最后 结果：0123456789
+		console.log(str1.slice(0, 6));  //字符串截取前包后不包 结果：012345
+		console.log(str1.slice(-5));    //结果：56789
+		//substring使用方式和slice几乎相同
+		//substr(截取的开始位置，截取的个数)
+		console.log(str1.substr(0,6));  //结果：56789
+		console.log(str.split(' '));    // 结果：["王hello", "world"]
+		console.log(str.toUpperCase()); //转换大写字母 结果：王HELLO WORLD
+		console.log(str.toLowerCase()); //转换小写字母 结果：王hello world
+		
+		//获取字符串的字节长度，假设英文为1个字节，中文为两个字节
+        function isChinese(str){
+        	var num = str.length;
+        	var num1 = 0
+        	for (var i = 0; i < str.length; i++) {
+        		if(/^[\u3220-\uFA29]+$/.test(str[i])){
+        			num1++
+	            }
+        	} 
+        	//console.log(num+num1) 
+        }
+        isChinese(str)
+	</script>
+</body>
+</html>

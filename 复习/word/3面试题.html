@@ -1,0 +1,310 @@
+
+1. 怎么回答面试题？
+	1. 你会的，好好答，多说。
+	2. 不会和第一次见到的题？思考，把思路说出来
+	3. 真的不会了？让上靠，说跟它类似的知识点
+	4. 记不清了，但是听说过，这方面回去要加强
+
+-----------------------------------------------------------
+
+1. react特点 ?
+	前端框架：数据驱动，减少DOM操作。
+	组件化开发，一个功能或一个页面写成一个组件，有利于开发与维护。
+	适合单页面应用开发，适合做移动端开发
+	生态环境比较丰富，路由，状态管理，服务端渲染，这些好用的功能。
+
+2.	react组件通信？
+	父子通信：props 回调函数
+	非父子通信：redux  react-redux  mobx ...
+
+3. 文本过长时，css实现省略号？
+	overflow : hidden;
+	white-space : nowrap;
+	text-overflow : esllipse;
+
+4. 	介绍一下盒模型 ?
+	content + padding + border + margin
+
+
+5. 盒模型宽度怎么计算的？
+
+	正常：content + padding + border
+	怪异: content
+
+6. 介绍一下闭包 ?
+	
+	闭包是由内部函数和与其相关的引用环境组合而成的实体
+
+	function foo(){
+		var a = 10;
+		functon bar(){
+
+		}
+	}
+	var a = 20;
+
+	用处：防止冲突、值始终保持在内存中 
+
+7.	介绍一下原型链？
+	
+	对象下有原型链 __proto__ ，一层层向外查找 Object.prototype(原型链的最外层)
+
+	obj.__proto__ : obj原型对象
+	Object.getPrototypeOf(obj) : obj原型对象
+
+8. 数组去重 ?
+	set方法、双循环、对象自变量、indexOf
+
+9. 正则，字符串去掉最开始和最末尾的空格 ? 
+	var result = str.replace(/^\s+|\s+$/g,''); 
+
+10. 介绍一下node的作用？
+	node服务端的JS 。。。多说
+
+11. box-sizing的用法?
+	改变盒模型模式的，border-box content-box
+
+12. relative和absolute分别相对于哪一块布局？
+		relative相对自身定位
+		absolute相对页面（有定位的祖先节点定位）
+
+13. flex布局中，justify-content和align-item的用途以及属性 ?
+	都说一遍 ... 
+
+14. 将三个div放置在同一行有多少种方案 ? 
+	浮动、inline-block、定位、弹性盒
+
+15. 解释一下同源策略？
+	协议，域名、端口相同，浏览器安全机制
+
+16. 处理跨域问题的几种解决方案?
+	JSONP、cors、反向代理、postMessage ...
+
+17. 请求一个不同域名下的接口，会发生什么？
+	会报错：不同域名，出现了跨域问题，去设置cors
+
+18. 箭头函数与普通函数的区别 ? 
+	this指向、不能用在构造函数，没有arguments，不能用在function* (){}
+
+19. var 和 let 的区别 ? 
+	let不能重复定义、块级作用域 .. 
+
+20. 点击事件写法中，addEventListener与onclick的区别？
+		1. addEventListener多次添加不会覆盖
+		2. addEventListener 第三个布尔值 false(冒泡) true(捕获)
+
+21. 解释一下JS事件模型？
+	event对象、事件流、addEventListner
+
+22. 如何阻止事件冒泡、默认事件?
+	ev.stopPropation();
+	ev.preventDefault();
+
+
+24. const a=[];a.push(1)上段代码是否正确？
+	正确的
+
+25. 编程：向<body>中插入100个<div> ? 
+	document.createElement  appendChild
+	innerHTML
+	document.write()
+
+26. 编程：ES5实现Object.assign ? 
+	Object.assign({},对象)
+	Object.assign = function(origin,target){
+		for(var attr in target){
+			origin[attr] = target[attr];
+		}
+		return origin;
+	};
+
+27. 有没有遇到过margin重叠的现象，如何解决？
+	BFC解决
+
+28. DOM结构 —— 两个节点之间可能存在哪些关系以及如何在节点之间任意移动？
+
+	appendChild() insertBefore()对节点进行移动（剪切的功能）
+
+29. Doctype作用？严格模式与混杂模式如何区分？它们有何意义?	
+
+	Doctype文档声明，指定当前是一个HTML文件，不写会出现怪异解析模式。
+	Doctype : XHTML2.0(严格)  HTML4.01(混杂)
+	意义 : 严格让代码更加标准，混杂让代码更加灵活	
+
+30. HTML5 为什么只需要写 <!DOCTYPE HTML>？			
+	
+	 HTML5 不基于 SGML，因此不需要对DTD进行引用 , 而HTML4.01基于SGML,所以需要对DTD进行引用。
+
+31. 行内元素有哪些？块级元素有哪些？ 空(void)元素有那些？	 	
+	空(void)元素(可能希望答单标签) : <br>  <link>  <meta> , <hr> <img> <input>
+
+32. 页面导入样式时，使用link和@import有什么区别？
+
+  （1）link属于XHTML标签，除了加载CSS外，还能用于定义RSS, 定义rel连接属性等作用；
+  	   而@import是CSS提供的，只能用于加载CSS;
+
+  （2）页面被加载的时，link会同时被加载，而@import引用的CSS会等到页面被加载完再加载;
+
+  （3）import是CSS2.1 提出的，只在IE5以上才能被识别，而link是XHTML标签，无兼容问题;
+   
+   (4)link支持使用js控制DOM去改变样式，而@import不支持;
+
+33. 介绍一下你对浏览器内核的理解？
+
+	渲染引擎(webkit)和JS引擎(V8)
+
+34. html5有哪些新特性、移除了那些元素？如何处理HTML5新标签的浏览器兼容问题？
+	如何区分 HTML 和 HTML5？
+
+ 	    <font></font>
+ 	    <s></s>
+ 	    <big></big>
+
+		兼容HTML5 ：header{ display : block } , 专门一个库html5shim
+		JS : document.createElement('header');
+
+ 	    通过标签区分，文档声明 <meta>编码
+
+35. HTML5的离线储存怎么使用，工作原理能不能解释一下？
+		
+		在没网络的时候，也能访问页面，离线的都是静态资源，css、js、png等
+		写入一个离线清单：xxx.manifest
+
+36. 请描述一下 cookies，sessionStorage 和 localStorage 的区别？
+	
+	cookies，sessionStorage 和 localStorage 共同点：都是存储在浏览器中
+
+	 cookies : 不是单纯的去存东西，一个cookie 4KB 一个网站30几个cookie
+	 	  用户是否登录、记录用户的行为，网页的个性化设置
+	 	  客户端与服务端都可以接收和设置cookie的
+
+	 sessionStorage 和 localStorage : 客户端操作(JS中)	 5M   存储	
+
+	区别点：1作用  2存储量  3是否涉及服务端
+
+37. iframe有那些缺点？
+
+	异步的(影响window.onload的执行时间)、影响SEO、不容易JS操作	
+		
+38. React 使用场景？
+	
+	单页面应用开发（移动端App）
+	大量的数据交互的应用（管理后台）
+
+39. 描述一下React 生命周期 ? 
+
+	背吧
+
+40. 实现组件有哪些方式？
+	
+	JSX语法 : 函数方式(无状态组件)、类的方式(有状态组件)
+	JS语法 : React.createClass	
+
+41. 应该在React生命周期的什么阶段发出ajax请求，为什么？	
+
+	componentDidMount : ajax请求 , 等DOM加载完成，载入数据
+
+42. shouldComponentUpdate函数有什么作用？
+
+	概念：return true(更新)  false(不向下更新)。
+	diff算法自己有一套更新规则。shouldComponentUpdate
+	函数可以按照自己的规则去实现是否要对组件进行更新。
+	目的：优化渲染。
+
+43. 当组件的setState函数被调用之后，发生了什么？
+
+		setState() : 更改数据，页面重新渲染 (componentWillUpdate render componentDidUpdate)
+
+		setState() : 默认异步更新数据的 , 多次触发的时候，只会更新一次。
+
+		setState()参数 : 写两个参数 {} function(){}
+						 写一个参数 function(prevstate){ }可以拿到上次的state
+
+44. 为什么循环产生的组件中要利用上key这个特殊的prop？
+
+	性能上：不加key，react把所有的列表都操作一遍。加上key，react可以要操作的项，
+	不影响其他列表项。
+
+45. React-router 路由的实现原理？
+
+	hash + onhashchange 
+	history + pushstate + onpopstate
+
+46. 受控组件(Controlled Component)与非受控组件(Uncontrolled Component)的区别?
+
+		受控组件 : 表单修改 -> state(setState处理) -> state更新渲染
+		非受控组件 : 表单修改 -> target.value(DOM处理) -> 渲染	
+
+47. refs 是什么?
+	
+		ref属性 普通的html
+		ref属性 组件上
+
+		refs.elem : DOM元素		
+		refs.elem : 组件元素
+
+48. React为什么自己定义一套事件体系呢，与浏览器原生事件体系有什么关系？
+
+		<div onClick={this.onClick}>
+		    react事件
+		</div>	
+		onClick自定义的事件体系（自我完成了一套事件委托），并不是把事件加到当前这个DOM上，
+		而是加到了document上（利用冒泡）
+
+		自定义事件体系对原生的进行了升级。
+			ev.nativeEvent : 可以得到原生的event对象
+
+49. 什么是HoC（Higher-Order Component）？适用于什么场景？
+
+	Hoc : 高阶组件 , 一个函数的参数是一个组件，函数的返回值，新的组件
+
+	react-redux  :  connect(map函数)(UI组件);
+
+50. 并不是父子关系的组件，如何实现相互的数据通信？
+
+	redux、react-redux、mobx : 状态管理
+
+	具体怎么通信的？reducer函数(纯函数) -> 接收action -> 改变state -> 渲染数据。
+	怎么触发reducer? dispatch()
+
+	react-redux流程：<provide store={store}></provide>，开发分成：容器组件、UI组件。
+
+	mobx : 装饰起@来实现状态管理操作的，类似于vuex
+
+51. Redux是如何做到可预测呢？
+		
+		chrome插件，redux可以监听到状态的变化。
+
+52. 如何实现一个倒计时功能，类似于蘑菇街中的秒杀?
+	
+		服务端php node 可以得到真实时间，但是JS只能得到系统时间
+
+		当前时间 : 从服务器上去拿时间
+		未来时间 : 从服务器上去拿时间
+
+		JS ：未来时间 - 当前时间 -> 格式化时期 -> 定时器不断的渲染到页面		
+53. 一个矩形，里面一个樱桃，过樱桃做一条直线， 并且没有数据和测量工具，如果做到评分矩形呢？	
+	经过樱桃的直线，满足端点前的距离，与终点后的距离相同，即可平分矩形。
+
+54. vue中的路由时如何管理的？ 你知道他的实现方式吗？
+	
+		vue用：vue-router来实现的路由
+		原理看45题
+
+55. retina屏幕的了解?
+		
+		retina屏幕 : 高清视网膜屏  PPI > 320
+
+		PPI : 手机一英寸的像素个数
+
+		手机分辨率：1136 * 768
+
+		retina屏幕 : 让图像显示的更加清晰，展示更多的像素点，对像素点进行了压缩处理。	
+		
+56. 移动端的点透是什么，有没有了解 ？
+		
+		教程：https://www.cnblogs.com/zldream1106/p/3670988.html
+		
+		点透的问题：一个层 , 层下面是一个a链接 , 点击让层隐藏，触发a的链接。
+
+		解决：其中最常使用的还是fastclick，地址 ：https://github.com/ftlabs/fastclick

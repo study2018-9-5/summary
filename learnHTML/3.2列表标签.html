@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML列表标签</title>
+</head>
+<body>
+  有序列表
+  <ol>
+    <li>列表项A</li>
+    <li>列表项B
+      <ol reversed start="2">
+        <li>reversed产生倒序的数字列表</li>
+        <li>start表示数字列表的起始编号</li>
+        <li>列表项B1</li>
+        <li>列表项B2</li>
+        <li>列表项B3</li>
+      </ol>
+    </li>
+    <li>列表项C
+      <ol type="A">
+        <li>type指定数字编号的样式</li>
+        <li value="3">value属性定义当前列表项编号</li>
+        <li>列表项C1</li>
+        <li>列表项C2</li>
+        <li>列表项C3</li>
+      </ol>
+    </li>
+  </ol>
+  <hr>
+  无序列表
+  <ul>
+    <li>列表项A</li>
+    <li>列表项B</li>
+    <li>列表项C</li>
+  </ul>
+  <hr>
+  术语列表
+  <dl>
+    <dt>术语名</dt>
+    <dd>术语解释</dd>
+
+    <dt>CPU</dt>
+    <dd>中央处理器</dd>
+
+    <dt>Memory</dt>
+    <dd>内存</dd>
+
+    <dt>Hard Disk</dt>
+    <dd>硬盘</dd>
+  </dl>
+</body>
+</html>

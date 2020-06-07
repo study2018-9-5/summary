@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<button>显示对话框</button>
+	<a href="https://www.zhihu.com">去知乎</a>
+	<script>
+		//系统对话框
+		alert('hello world'); 
+		
+		var result = confirm('要去搜索杨幂么');
+		if(result === true) {
+			//用户点击了确定
+			location.href = 'https://www.baidu.com/s?wd=杨幂';
+		} else {
+			//用户点击的取消
+		}
+
+		var result = prompt('请输入银行卡密码', '000000');
+		if(result) {
+			//当用户点击取消。result===null
+			//否则result为用户输入的内容
+			console.log(result);
+		}
+
+		//特点：
+		//	1. 样式不能改变
+		//	2. 系统对话框显示时，JS线程是阻塞的
+		//	3. 系统对话框都是模态的
+
+		document.querySelector('button').onclick = function () {
+			alert('bbbbbbbbb');
+		}
+
+		/*
+			http/https: 协议
+			域名： 域名===>ip 域名解析(DNS)
+			端口号：标识应用程序的
+			path: / 服务器根路径,根路径意外的资源，浏览器不能直接访问到
+			hash: 发送请求时，不会发给服务器，是给浏览器使用的
+			search: ?及后面的内容
+			href: 整个路径
+		*/
+
+        //-----------------------搜索---------------------------//
+		var btn = document.querySelector('button');
+		var input = document.querySelector('input');
+		btn.onclick = function () {
+			var word = input.value;
+			console.log(word);
+			location.href = 'https://www.baidu.com/s?wd=' + word;
+		}
+	</script>
+</body>
+</html>

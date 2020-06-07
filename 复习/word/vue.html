@@ -1,0 +1,92 @@
+1、active-class是哪个组件的属性？嵌套路由怎么定义？
+
+	active-class在<router-link>
+	var routers = [
+		{ path : '' , component : '' },
+		{ path : '' , component : '' , children : [] }
+	];
+
+2. 怎么定义vue-router的动态路由？怎么获取传过来的动态参数？ 
+
+	对path属性加上/:id。  使用router对象的params.id	
+
+3. vue-router有哪几种导航钩子？  
+		导航钩子（守卫） : 可以看做是路由的生命周期
+			router.beforeEach(to,from,next)	
+
+		全局的、独享的、组件内的
+		
+4. SCSS了解多少？
+	http://www.lvyestudy.com/sass/sass_list.aspx
+
+	webpack中如何使用scss :  scss-loader 、node-scss 添加这两个加载器	
+
+5. mint-ui是什么？怎么使用？说出至少三个组件使用方法？
+	vue的ui框架，主要针对移动端（饿了么团队开发的）
+	<header> <navbar> <indexList> messageBox <swipe> <switch>
+
+6. v-model是什么？怎么使用？ vue中标签怎么绑定事件？
+	可以实现双向绑定，<input type="text" v-model="message" >
+
+7. axios是什么？怎么使用？描述使用它实现登录功能的流程？
+
+	Axios 是一个基于 promise 的 HTTP 库，可以用在浏览器和 node.js 中。
+	axios.post('xxx.php',{
+		username : $('#username').val(),
+		password : $('#password').val()
+	}).then((res)=>{
+		if(res.code === 'ok'){
+			this.$router.push('/index');
+		}
+	});	
+
+8. 什么是RESTful API？怎么使用?
+	后端定义url的接口规范
+	/user/list
+	/user/detail
+	/film/now-playing
+
+9. 状态管理 : vuex ( 借鉴flux和redux , store、state、mutations、action
+	( dispatch、commit )、module )	
+
+10. vue-router是什么？它有哪些组件？
+
+    vue用来写路由一个插件。router-link、router-view
+
+11. vue响应式原理？
+	Object.defineProperty()
+
+12. 请详细说下你对vue生命周期的理解？
+
+	总共分为8个阶段创建前/后，载入前/后，更新前/后，销毁前/后。	    
+
+13. 请说下封装 vue 组件的过程？
+		创建自定义组件的过程是什么样？
+			Vue.component()   { components : {} }
+		复用自定义组件的时候该怎么去做？
+			组件复用的属性，需要通过props从父组件传递到当前封装的组件中
+			组件复用的结构，需要通过<slot>从父组件传递到当前封装的组件中
+
+14. vue.cli中怎样使用自定义的组件？有遇到过哪些问题吗？
+
+	第一步：在components目录新建你的组件文件（smithButton.vue），
+			script一定要export default {
+
+	第二步：在需要用的页面（组件）中导入：import smithButton from 
+			‘../components/smithButton.vue’
+
+	第三步：注入到vue的子组件的components属性上面,components:{smithButton}
+
+	第四步：在template视图view中使用，<smith-button>  </smith-button>
+
+	问题有：smithButton命名，使用的时候则smith-button。			
+
+15. 聊聊你对Vue.js的template编译的理解？
+
+	<template> -> html -> 通过compile编译器把template编译成AST语法树  
+		-> vue中JS对象(虚拟DOM)
+
+16. <keep-alive> , react中 localstorage实现
+
+17. 异步加载组件( 按需加载组件 )
+http://www.bslxx.com/a/vue/mianshiti/2017/1019/989.html

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="GB2312">
+	<title>Document</title>
+
+</head>
+<body>
+	<script>
+
+	//console.log( global );
+	
+	var obj = {
+		a : 1,
+		b : 2,
+		c : 3
+	};
+
+	var obj2 = {
+		username : 'xiaoming',
+		age : 20
+	};
+
+	//obj.getKeys();  // ['a','b','c']
+	
+
+	Object.prototype.getKeys = function(){
+		var result = [];
+		for(var attr in this){
+			if( this.hasOwnProperty(attr) ){
+				result.push( attr );
+			}
+		}
+		return result;
+	};
+
+	console.log( obj.getKeys() );
+	console.log( obj2.getKeys() );
+
+	console.log(Number(834879347384).toLocaleString());
+
+	</script>
+
+	<script type="text/javascript" src="a.js"></script>
+</body>
+</html>
