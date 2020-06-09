@@ -24,6 +24,6 @@ console.log("Math.abs(1/3 - (1 - 2/3)) < 0.00001", Math.abs(1/3 - (1 - 2/3)) < 0
   null表示'空'的值，它和0以及空字符串''不同，0表示否认是一个数值，''表示的是一个长度为0的空字符串。
   大多数情况下我们用null，只有在判断函数参数是否传递下才用undefined。
 */
-console.log("null === 0", null === 0)
+console.log("null === 0", null === 0)  // false
 
-console.log("null === ''", null === '')
+console.log("null === ''", null === '')  // false

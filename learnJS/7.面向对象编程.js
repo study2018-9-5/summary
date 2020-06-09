@@ -52,7 +52,7 @@ console.log("xiaohong.name", xiaohong.name)
 // 用new创建的对象从原型上获得了一个constructor属性，它指向函数Student本身。
 // xiaohong.constructor === Student_1.prototype.constructor
 // Student_1.prototype.constructor === Student_1
-console.log("xiaohong.constructor === Student_1", xiaohong.constructor === Student_1)
+console.log("xiaohong.constructor === Student_1", xiaohong.constructor === Student_1)  // true
 
 // 要让创建的对象共享一个hello函数，
 // 我们只要把hello函数移动到xiaoming、xiaohong这些对象共同原型上就可以了，
