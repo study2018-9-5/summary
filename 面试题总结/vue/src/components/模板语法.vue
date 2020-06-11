@@ -4,6 +4,7 @@
     <label>颜色<input type="checkbox" v-model="use"></label>
     <p :class="{'activeClass': use}">{{ message }}</p>
     <p :class="['default', use? 'activeClass': '']">class多个值的绑定</p>
+    <button @click="setStorage()">设置localStroage</button>
   </div>
 </template>
   
@@ -21,7 +22,9 @@
 
     },
     methods: {
-
+      setStorage(){
+        window.localStorage.setItem('name', '小明')
+      }
     }
   }
 </script>

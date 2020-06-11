@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>vue的例子</title>
+  <script src="./vue.js"></script>
+</head>
+<body>
+  <!-- 
+    v-on在监听键盘事件时，如果元素没有获取焦点，keyup事件无法生效
+    实现点击按键enter进行登录
+    ----------------------------------------------------------
+    1.按钮添加自定义指令(获取焦点)
+    2.把事件绑定到父元素（外框）
+
+    @keyup.alt.67="function"  ==>	Alt + C
+    @click.ctrl="function"	  ==> Ctrl + Click
+    -----------------------------------------------------------
+    但是，如果是在自己封装的组件或者是使用一些第三方的UI库时，
+    会发现并不起效果，这时就需要用到.native修饰符了，如：
+    <el-input type="text" v-model="val" @keyup.enter.native="keyFun('enter')"></el-input>
+    ------------------------------------------------------------
+    如果遇到.native修饰符也无效的情况，可能就需要用到$listeners了，具体用法请参考Vue官方文档
+    https://cn.vuejs.org/v2/guide/components-custom-events.html#%E5%B0%86%E5%8E%9F%E7%94%9F%E4%BA%8B%E4%BB%B6%E7%BB%91%E5%AE%9A%E5%88%B0%E7%BB%84%E4%BB%B6
+  >
+</el-input>
+  -->
+  <div id="app" @keyup.enter="keyFun('enter')">
+    <input type="text" v-model="val"/>
+    <button @keyup.enter="keyFun('enter')">enter</button>
+    <button @keydown.delete="keyFun('delete')">delete</button>
+  </div>
+
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        val: ''
+      },
+      methods: {
+        keyFun(keyName) {
+          this.val = keyName;
+          console.log("keyFun -> keyName", keyName)
+        }
+      },
+      directives: {
+        focus: {
+          // 指令的定义
+          inserted: function(el) {
+            el.focus();
+          }
+        }
+      }
+    })
+  </script>
+</body>
+</html>

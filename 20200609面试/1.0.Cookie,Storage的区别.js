@@ -16,10 +16,17 @@
   cookie：存储：document.cookie = "username=xiaoming; expires=time; path=/"
           读取：document.cookie
           删除：document.cookie = "username=; expires=outtime; path=/"
+          ------------------------------------------------------------------------
+  如果想让多个页面共享cookie的话：指定Path为"/"即可
   --------------------------------------------------------------------------------
   localStorage和sessionStorage都具有相同的操作方法，例如setItem、getItem和removeItem等
   存储：window.localStorage.setItem("key", "value")
   获取：window.localStorage.getItem("key")
   删除：window.localStorage.removeItem("key")
   清除所有：window.localStorage.clear()
+=============================================================================================================
+  问题1.如何隔离开不同页面之间的localStorage（总不能在百度的页面上能读到腾讯的localStorage吧）。
+  ------
+  答：localStorage只要在相同的协议、相同的主机名、相同的端口下，就能读取/修改到同一份localStorage数据。
+      sessionStorage比localStorage更严苛一点，除了协议、主机名、端口外，还要求在同一窗口（也就是浏览器的标签页）下。
 */

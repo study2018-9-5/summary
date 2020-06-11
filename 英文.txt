@@ -27,4 +27,9 @@ browerify => 浏览器
 engine => 引擎/发动机
 strict => 严格
 execution => 执行
+client => 客户
+oauth => 认证
+token => 令牌
+session => 会议
+
 conflict => 冲突
