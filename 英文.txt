@@ -31,5 +31,6 @@ client => 客户
 oauth => 认证
 token => 令牌
 session => 会议
-
 conflict => 冲突
+upgrade => 升级
+Switching Protocols => 交换协议
