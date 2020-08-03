@@ -1,0 +1,25 @@
+#dialogBox{
+  display: none;
+  #dialogDiv{
+    #dialogForm{
+      padding: 10px 20px{
+        right: 10px;
+      };
+      display: flex;
+      label{
+        width: 25%;
+        height: 25px;
+        line-height: 25px;
+        cursor: pointer;
+        display: flex;
+        .label{
+          font-weight: bold;
+        }
+        .checkbox{
+          margin: 6px 3px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

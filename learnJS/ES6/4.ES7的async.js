@@ -5,7 +5,7 @@ async function helloAsync(){
 // Promise{'helloAsync'}，async函数返回一个Promise对象，可以使用then方法添加回调函数。
 console.log("helloAsync -> HelloAsync", helloAsync())
 helloAsync().then(function (res) {
-  // console.log("res", res)
+  // console.log("res", res)    // HelloAsync
 })
 
 /* 

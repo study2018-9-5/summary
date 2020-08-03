@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>对for循环进行优化</title>
+</head>
+<body>
+  <script>
+    var array = [1, 2, 3, 4, 5];
+    var arr = [];
+    arr.length = 100000;
+    // 正常的for循环
+    console.time('原始');
+    for (let i = 0; i < arr.length; i++) {
+      
+    }
+    console.timeEnd('原始');
+
+    // 改1
+    console.time('改1');
+    for (let i = 0, len = arr.length; i < len; i++) {
+      
+    }
+    console.timeEnd('改1');
+    
+    // 改2
+    console.time('改2');
+    for (let i = 0, item; item = arr[i++];) {
+      // 注：使用该种方法,每次在循环体内部取到的 i 是 ++ 后的值,所以在使用索引的时候需要 -1.
+      // console.log(item, i);
+    }
+    console.timeEnd('改2');
+    
+  </script>
+</body>
+</html>

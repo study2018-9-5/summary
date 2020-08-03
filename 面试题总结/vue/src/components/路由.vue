@@ -20,5 +20,8 @@
 </script>
 
 <style scoped>
-
+  html,body{
+    width: 100px;
+    height: 200px;
+  }
 </style>

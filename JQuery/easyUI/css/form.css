@@ -1,0 +1,22 @@
+#formbox{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+#formbox .inputBox{
+  width: 20%;
+  margin-bottom:20px;
+}
+#formbox .inputBox .textbox-label{
+  width: 80px!important;
+}
+#formbox .inputBox .textbox,.combo{
+  width: calc(100% - 87px)!important;   /*87 = label的宽 + padding + border*/
+  display: inline-block;
+}
+#formbox .inputBox .textbox .textbox-text{
+  width: 100%!important;
+  box-sizing: border-box;
+}
+
+/* dialog弹窗中的表单 */

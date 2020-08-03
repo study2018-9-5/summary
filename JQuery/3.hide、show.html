@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>on方法事件处理</title>
+  <script src="./jquery-3.5.1.js"></script>
+</head>
+<body>
+  <button>获取p元素</button>
+	<div id="box">
+		<p id="p">如果你点我，我就会消失。</p>
+	</div>
+  <script>
+    $(function(){
+     
+      $("#p").click(function(){
+        debugger
+        $('#box').html('');
+        $(this).hide();
+      });
+      $("button").click(function(){
+        $("#p").show();
+      });
+    });
+  </script>
+</body>
+</html>

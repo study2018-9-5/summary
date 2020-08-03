@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>文本框</title>
+  <link href="./css/easyui.css" rel="stylesheet">
+  <link href="./css/icon.css" rel="stylesheet">
+
+  <script src="../jquery-3.5.1.js"></script>
+  <script src="./js/jquery.easyui.min.js"></script>
+</head>
+<body>
+  <div class="easyui-panel" title="文本框" style="width:300px;height:200px;padding:20px;">
+    <input class="easyui-textbox" type="text" id="username" label="账号：" labelPosition="top" prompt="用户名"><br>
+    <input class="easyui-passwordbox" id="password" label="密码：" labelPosition="top" prompt="密码">
+    <input class="easyui-combobox" id="month" label="月份：" labelPosition="top" prompt="月份">
+  </div>
+
+  <script>
+    /*
+      属性：
+      icons：在文本框删贡献是图标。
+        iconCls：类型string，图标的class名称；
+        disabled：类型boolean，指明是否禁用该图标；
+        handler：类型function，用于处理点击该图标以后的动作。
+      iconCls：在文本框显示背景图标。
+      --------------------------------------------------------------------------
+      事件：
+      onChange：在字段值更改的时候触发。newValue：新值（改变后的值）， oldValue：老值。
+      --------------------------------------------------------------------------
+      方法：
+      textbox：返回文本框对象。
+      clear：清除组件中的值。
+    */ 
+    var data = [{
+			label: '1月',
+			value: '1'
+		},{
+			label: '2月',
+			value: '2'
+		},{
+			label: '3月',
+			value: '3'
+    }]
+    
+    $('#username').textbox({
+      icons: [{
+        iconCls:'icon-clear',
+        handler: function(e){
+          $(e.data.target).textbox('clear');
+        }
+      }]
+    })
+
+    $("#month").combobox({
+      value:'1',            // 初始的值
+      textField: 'label',   // 显式文本
+      valueField: 'value',  // 隐式值
+      data: data,           // 数据（相当于下拉的列表）
+      editable:false,       // 是否允许输入
+      onChange:function(newValue, oldValue){
+        console.log("newValue, oldValue", newValue, oldValue)
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>文本框</title>
+  <link rel="stylesheet" type="text/css" href="./css/easyui.css">
+  <link rel="stylesheet" type="text/css" href="./css/icon.css">
+
+  <link rel="stylesheet" type="text/css" href="./css/dialog.css">
+
+  <script src="../jquery-3.5.1.js"></script>
+  <script src="./js/jquery.easyui.min.js"></script>
+</head>
+<body>
+  <button id="openBtn">打开弹窗</button>
+  <div id="dialogBox">
+    <div id="dialogDiv" class="easyui-dialog" title="导出" style="width:500px;height:400px;"
+      data-options="buttons:'#dialogBtn',resizable:true,modal:true,closed:true">
+      <form id="dialogForm">
+        <!-- <label>
+          <input class="checkbox" type="checkbox" value="住房公积金" name="checkboxBtn" checked/>
+          <span class="label">住房公积金</span>
+        </label>
+        <label>
+          <input class="checkbox" type="checkbox" value="所得税" name="checkboxBtn"/>
+          <span class="label">所得税</span>
+        </label>
+        <label>
+          <input class="checkbox" type="checkbox" value="水电气费" name="checkboxBtn"/>
+          <span class="label">水电气费</span>
+        </label>
+        <label>
+          <input class="checkbox" type="checkbox" value="其他费用" name="checkboxBtn"/>
+          <span class="label">其他费用</span>
+        </label> -->
+      </form>
+    </div>
+    <div id="dialogBtn">
+      <a href="javascript:void(0);" class="easyui-linkbutton confirm">确认</a>
+      <a href="javascript:void(0);" class="easyui-linkbutton checkAll">全选</a>
+      <a href="javascript:void(0);" class="easyui-linkbutton cleanAll">全清</a>
+      <a href="javascript:void(0);" class="easyui-linkbutton close">关闭</a>
+    </div>
+  </div>
+
+  <script>
+    /*
+      属性：
+      resizable: 定义对话框是否可调整尺寸(false)。
+      --------------------------------------------------------------------------
+      事件：
+      
+      --------------------------------------------------------------------------
+      方法：
+      open：打开弹窗
+      close：关闭弹窗
+    */ 
+    // html标签中有没有什么自带的属性可以数据的，所以我们需要自定义属性。
+    var checkValArr = [];  // 存放选中状态的值的数组
+    var dataArr = [{
+      label: "住房公积金",
+      value: "住房公积金"
+    }]
+    $(function () {
+      // 全选
+      $(".checkAll").click(function () {
+        $(":checkbox[name=checkboxBtn]").prop("checked",true);
+      })
+      // 全清
+      $(".cleanAll").click(function () {
+        $(":checkbox[name=checkboxBtn]").prop("checked",false);
+      })
+      // 确认
+      $(".confirm").click(function () {
+        // 选中状态的数组
+        var checkArr = $(":checkbox[name=checkboxBtn]:checked");
+        checkValArr = [];
+        $.each(checkArr, function (index, item) {
+          checkValArr.push(item.value)
+        })
+      })
+    })
+    // 打开弹窗
+    $("#openBtn").click(function () {
+      $('#dialogDiv').dialog('open');
+      var str = "";
+      // $.each(dataArr, function (index,item) {
+      //   str = `<label>
+      //           <input class="checkbox" type="checkbox" value=${item.value} name="checkboxBtn" checked/>
+      //           <span class="label">${item.label}</span>
+      //         </label>`
+      // })
+
+      for (let i = 0, item; item=dataArr[i++];) {
+        console.log("item", item)
+        str = `<label>
+                <input class="checkbox" type="checkbox" value=${item.value} name="checkboxBtn" checked/>
+                <span class="label">${item.label}</span>
+              </label>`
+      }
+
+      $("#dialogForm").html(str);
+    })
+    // 关闭弹窗
+    $(".close").click(function () {
+        $('#dialogDiv').dialog('close');
+        $(":checkbox[name=checkboxBtn]").prop("checked",false);
+      })
+  </script>
+</body>
+</html>

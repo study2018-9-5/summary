@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>table表格</title>
+  <link href="./css/easyui.css" rel="stylesheet">
+  <link href="./css/icon.css" rel="stylesheet">
+
+  <script src="../jquery-3.5.1.js"></script>
+  <script src="./js/jquery.easyui.min.js"></script>
+
+  <style>
+    /* .datagrid-btable .datagrid-cell>div{
+      width:100%;
+      overflow: hidden;
+      text-overflow:ellipsis;
+      white-space: nowrap;
+    } */
+    .datagrid-cell, .datagrid-cell-group, .datagrid-header-rownumber, .datagrid-cell-rownumber {
+      margin: 0;
+      padding: 0 4px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow:ellipsis;
+      height: 18px;
+      line-height: 18px;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <!-- 
+    
+  -->
+  <button id="btn" onclick="getData()">加载数据</button>
+  <label>隐藏为0列：<input type="checkbox"></label>
+  <div class="easyui-layout" data-options="fit:true" style="padding: 0 10px;">
+    <table id="tableContent" class="easyui-datagrid" style="width:800px;height:400px;overflow:scroll"></table>  
+  </div>
+
+  <script>
+    /*
+      方法：
+      validateRow：校验指定的行，如果有效返回true。index：行索引。
+      beginEdit：开始对一行的编辑。index：行索引。
+      endEdit：结束对一行的编辑。index：行索引。
+      getEditor：获取指定的编辑器。index：行的索引，field：字段名。
+      getChanges：获取最后一次提交以来更改的行。
+      unselectAll：取消选中当前页所有的行。
+      loading：显示正在加载状态。
+      loaded：隐藏正在加载状态。
+      -------------------------------------------------------------------------------------------
+      事件：
+      onClickCell：当用户单击一个单元格时触发，rowIndex：行的索引，field：字段名，value：单元格值。
+      onAfterEdit：当用户完成编辑一行时触发，rowIndex：行的索引，rowData：行的值，changes：更改的字段/值对。
+      -------------------------------------------------------------------------------------------
+    */ 
+    // 复选框checkbox
+    var tableFrozenColumn = [[
+      {field:'ck',checkbox:'checkbox',width:'5%',align:'center'}
+    ]];
+    // 表头数据
+    // 列属性：
+    // editor：可编辑的单元格
+    // 当fitColumns:true 时，columns里的width变为改列宽度占表格总宽度大小的比例，而不是实际宽度。
+    var editIndex = undefined;
+    var columnsArr = [[
+      {field:'name',title:'姓名',align:'center',width:'25%',sortable:true,sortOrder:'asc'},
+      {field:'age',title:'年龄',align:'center',width:'25%',sortable:true,sortOrder:'asc',editor:'text'},
+      {field:'sex',title:'性别',align:'center',width:'25%',sortable:true,sortOrder:'asc',
+        // 相当于过滤器（一般用于处理数据）
+        formatter: function(value,row,index){
+          // console.log("value,row,index", value,row,index)
+          if(value == '0'){
+            return '男'
+          }else{
+            return '女'
+          }
+        }
+      },
+      {field:'addr',title:'地址',align:'center',width:'25%',sortable:true,sortOrder:'asc',
+        // formatter: function(value,row,index){
+        //   return '<div title='+value+'>'+value+'</div>';
+        // }
+      },
+      {field:'salary',title:'工资',align:'center',width:'25%',sortable:true,sortOrder:'asc',editor:'text'}
+    ]];
+
+    // 发送ajax获取数据
+    function getData() {
+      $.ajax({
+        type: 'GET',
+        url: './json/datagrid_data.json',
+        data: {},
+        success: function (res) {
+          console.log('res', res);
+          loadTable(res.data);
+          // $('#tableContent').datagrid('reloadFooter',[{name: '总价', age: 0}]);
+        }
+      })
+    }
+
+    // 加载表格数据
+    function loadTable(data){
+      $.each(data.footer[0], function (key, value) {
+        $.each(data.rows, function (index, item) {
+          debugger
+          // parseInt(item.age) 
+        })
+      })
+      
+      $("#tableContent").datagrid({
+        columns: columnsArr,  // 表头
+        data: data, // 数据
+        fitColumns: true,     // 自适应列宽
+        frozenColumns: tableFrozenColumn, // 和列（column）属性一样，但是这些列将被"冻结"在左边。
+        pagination: true,     // 分页
+        rownumbers: true,     // 行数（序号）
+        showFooter: true,
+        // showHeader: false
+        striped: true,  // 斑马纹
+      });
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // debugger
+    // var footRows = $('#tableContent').datagrid('getFooterRows');
+    //该方法用于关闭上一个焦点的editing状态
+    function endEditing() {
+      if (editIndex == undefined) {
+        return true
+      }
+      if ($('#tableContent').datagrid('validateRow', editIndex)) {
+        $('#tableContent').datagrid('endEdit', editIndex);
+        editIndex = undefined;
+        return true;
+      } else {
+        return false;
+      }
+    }
+
+    // 点击单元格事件
+    $("#tableContent").datagrid({onClickCell: function (rowIndex, field, value) {
+      // console.log("rowIndex, field, value", rowIndex, field, value) 
+      if (endEditing()) {
+        if(field=="age"){
+          $(this).datagrid('beginEdit', rowIndex);
+          var ed = $(this).datagrid('getEditor', {index:rowIndex,field:field});
+          $(ed.target).focus();
+        }		
+        editIndex = rowIndex;
+      }
+    }})
+
+    // 单元格失去焦点事件
+    $("#tableContent").datagrid({onAfterEdit: function (rowIndex, rowData, changes) {
+      // console.log("rowIndex, rowData, changes", rowIndex, rowData, changes) 
+      var updated = $(this).datagrid('getChanges', 'updated'); // 返回的值为数组
+      console.log("updated", updated)
+      $(this).datagrid('unselectAll');
+    }})
+
+    $(function(){
+      getData();
+    })
+  </script>
+</body>
+</html>

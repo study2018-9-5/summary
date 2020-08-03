@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>table表格</title>
+  <link href="./css/easyui.css" rel="stylesheet">
+  <link href="./css/icon.css" rel="stylesheet">
+
+  <script src="../jquery-3.5.1.js"></script>
+  <script src="./js/jquery.easyui.min.js"></script>
+</head>
+<body>
+  <!-- 
+    
+  -->
+  <button id="btn" onclick="getData()">加载数据</button>
+  <div style="width: 602px;height: 200px">
+    <table id="tableContent" class="easyui-datagrid" style="height:100%;overflow:hidden"></table>  
+  </div>
+
+  <script>
+    /*
+      table属性：
+      loadFilter：返回要显示的过滤数据。类型为function，参数data，表示原始数据。
+                  您可以把原始数据变成标准数据格式。该函数必须返回标准数据对象，含有'total'和'rows'属性。
+      page属性：
+      beforePageText：在 input 组件之前显示 label。
+      afterPageText：在 input 组件之后显示 label。
+      displayMsg：显示 {from} to {to} of {total} 页面信息。
+      ------------------------------------------------------------------------------------------
+      方法：
+      options：返回选项（options）对象。
+      getPager：返回分页（pager）对象。
+      refresh：刷新并显示分页信息。
+      -------------------------------------------------------------------------------------------
+      事件：
+      onSelectPage：当用户选择新的页面时触发。回调函数包含两个参数：
+                    pageNumber：新的页码
+                    pageSize：新的页面尺寸
+      
+      -------------------------------------------------------------------------------------------
+    */ 
+    // 表头数据
+    // 列属性：
+    var columnsArr = [[
+      {field:'name',title:'姓名',width:200,align:'center',sortable:true,sortOrder:'asc'},
+      {field:'age',title:'年龄',width:200,align:'center',sortable:true,sortOrder:'asc'},
+      {field:'sex',title:'性别',width:200,align:'center',sortable:true,sortOrder:'asc',
+        // 相当于过滤器（一般用于处理数据）
+        formatter: function(value,row,index){
+          // console.log("value,row,index", value,row,index)
+          if(value == '0'){
+            return '男'
+          }else{
+            return '女'
+          }
+        }
+      },
+      {field:'addr',title:'地址',width:200,align:'center',sortable:true,sortOrder:'asc'}
+    ]];
+
+    // 发送ajax获取数据
+    function getData() {
+      $.ajax({
+        type: 'GET',
+        url: './json/datagrid_data.json',
+        cache: true, //推荐使用缓存
+        data: {},
+        success: function (res) {
+        console.log("getData -> res", res.data)
+          setTableData(res.data.page1)
+        }
+      })
+    }
+
+    // 设置table中的数据
+    function setTableData(data) {
+      $("#tableContent").datagrid({
+        columns: columnsArr,  // 表头
+        data: data,           // 数据
+        fitColumns: true,     // 自适应列宽
+        rownumbers: true,     // 行数（序号）
+        pagination: true,     // 分页
+        pageSize: 1,
+        pageList: [1, 5, 10],
+        loadFilter: function(data){
+        console.log("setTableData -> data", data)
+          var dg = $(this);
+          var opt = dg.datagrid('options');
+          var page = dg.datagrid('getPager');
+          page.pagination({
+            beforePageText:'第',
+            afterPageText:'页    共{pages}页',
+            displayMsg:'当前显示{from} - {to}条记录    共{total}条记录',
+            onSelectPage: function (pageNum, pageSize) {
+              console.log("getData -> pageNum, pageSize", pageNum, pageSize)
+              opt.pageNumber = pageNum;
+              opt.pageSize = pageSize;
+              page.pagination('refresh', {
+                pageNumber: pageNum,
+                pageSize: pageSize
+              });
+              dg.datagrid('loadData', data);
+            }
+          })
+          return data
+        }
+      });
+    }
+    
+  </script>
+</body>
+</html>

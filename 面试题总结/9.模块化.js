@@ -9,6 +9,7 @@ import XXX from 'b.js'
 
 
 // CommonJs是Node独有的规范
+// CommonJS定义的模块分为: 模块标识(module)、模块定义(exports) 、模块引用(require)
 // a.js
 module.exports = {
   a: 1

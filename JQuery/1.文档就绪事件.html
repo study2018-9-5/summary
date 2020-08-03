@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>文档就绪事件</title>
+  <script src="./jquery-3.5.1.js"></script>
+</head>
+
+<body>
+  <script>
+    /*
+      1.$(function() {}) 是 $(document).ready(function() {}) 的简写, 这个函数什么时候执行的呢?
+        答案：DOM 加载完毕之后执行。
+      2.那么什么时候，DOM 加载完成了呢?
+        即页面所有的 html 标签（包括图片等）都加载完了，即浏览器已经响应完了，加载完了，全部展现到浏览器界面上了。
+      3.DOM 文档加载步骤：
+        3.1 解析 HTML 结构
+        3.2 加载外部的脚本和样式文件
+        3.3 解析并执行脚本代码
+        3.4 执行 $(function(){}) 内对应代码
+        3.5 加载图片等二进制资源
+        3.6 页面加载完毕，执行 window.onload
+    */ 
+    $(function () {
+      console.log("ready执行");
+    });
+
+    $(function () {
+      console.log("ready1执行");
+    })
+  </script>
+</body>
+</html>

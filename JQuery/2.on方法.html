@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>on方法事件处理</title>
+  <script src="./jquery-3.5.1.js"></script>
+</head>
+<body>
+  <div id="box">
+    <span id="button1">button1</span>
+    <span id="button2" class="btnClass">button2</span>
+    <span id="button3">button3</span>
+  </div>
+  <script>
+    /*
+      $(selector).on(event, childSelector,data,function)
+      on()方法在"被选元素"及"子元素"上添加一个或多个事件处理程序。
+      event：事件的名称(可以自定义) 支持绑定多个事件 多个事件用空格分开，也可以是map参数和数组（必选）
+      childSelector：添加事件程序的"子元素"而且不是"父选择器本身"（可选）
+      data：传递到事件对象event的额外的参数（可选）
+      function：规定事件发生时运行的函数（必选）
+      --------------------------------------------------------------------------------------------
+      $(selector).attr(attribute)：返回被选元素的属性值。
+      $(selector).attr(attribute,value)：设置被选元素的属性和值。
+      ---------------------------------------------------------------------------------------------
+      $(selector).hasClass(classname)：检查被选元素是否包含指定的类名称。如果被选元素包含指定的类，该方法返回"true"。
+    */ 
+    $('#box').on('click', 'span', function (e) {
+      var spanId = $(this).attr('id');
+      var spanClass = $(this).hasClass('btnClass');
+      console.log("attr：", spanId)
+      console.log("hasClass：", spanClass)
+    })
+  </script>
+</body>
+</html>

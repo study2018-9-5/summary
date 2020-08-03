@@ -1,0 +1,78 @@
+a,img,body,button,dd,div,dl,fieldset,form,h1,h2,h3,h4,h5,h6,html,input,li,menu,ol,p,td,textarea,th,tr,ul{padding:0;margin:0;border:0;font-family:"PingFang SC","open sans","microsoft yahei","Source Sans Pro", "Helvetica Neue", Arial, sans-serif;-webkit-font-smoothing:antialiased;}
+li,ol,ul{list-style:none}
+b,em,h1,h2,h3,h4,h5,h6,i{font-weight:400;font-style:normal}
+body,button,input,select,textarea{color:#333;-webkit-text-size-adjust:none;font-size:12px;outline:0}
+body {-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-tap-highlight-color:transparent;}
+input[type=password]:focus,input[type=text]:focus{outline:0}
+select:focus{outline:0;box-shadow:0 0 8px rgba(126,202,241,.5);border:1px solid #58c9f3}
+textarea:focus{outline:0;box-shadow:0 0 8px rgba(126,202,241,.5);border:1px solid #58c9f3}
+textarea{overflow:auto}
+input::-ms-clear{display:none}
+input[type=password]::-ms-reveal{display:none}
+input:-webkit-autofill,input:-webkit-autofill:focus,input:-webkit-autofill:hover{box-shadow:0 0 0 60px #fff inset;-webkit-text-fill-color:#333}
+*{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box}
+a{color:#333;text-decoration:none}
+a:hover{color:#666;text-decoration:none}
+input::-ms-clear{display:none}
+img{display:block;border:0}
+input,select{vertical-align:middle}
+html,body{height:100%;}
+
+/* 重置滚动条样式 */
+::-webkit-scrollbar{width:9px;height:9px;background:0 0}
+::-webkit-scrollbar-corner{background:0 0}
+::-webkit-resizer{background:0 0}
+::-webkit-scrollbar-thumb,::-webkit-scrollbar-track{border-radius:999px;background-clip:content-box;border:solid 2px transparent}
+::-webkit-scrollbar-track{background-color:rgba(33,37,43,.26)}
+::-webkit-scrollbar-thumb{min-height:20px;background-color:rgba(33,37,43,.26)}
+::-webkit-scrollbar-thumb:hover{background-color:#5A6274;border-width:1px}
+
+/* 重置elementui中的默认样式 */
+body .el-input__prefix, .el-input__suffix {top: 1px;} 
+body .el-table th{background:#eee;}
+body .el-table td, .el-table th{padding: 10px 0;}
+
+/* 重置dialog中的默认样式 */
+body .el-dialog{
+  border-radius: 6px;
+}
+body .el-dialog .el-dialog__header {
+  height: 49px;
+  padding: 10px 20px;
+  border-radius: 6px 6px 0 0;
+  background-color: #f4f7fa;
+}
+body .el-dialog__title {
+  line-height: 29px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+}
+body .el-dialog__headerbtn {
+  top: 10px;
+  font-size: 22px;
+  line-height: 29px;
+  color: #333;
+}
+body .el-dialog .el-dialog__body {
+  padding: 20px;
+}
+
+/* 重置el-popover中的默认样式 */
+body .el-popover{
+  padding: 10px;
+}
+
+/* 重置提示框样式 */
+body .el-message-box .el-message-box__headerbtn .el-message-box__close:hover{
+  color: #ca0c16;
+}
+body .el-message-box .el-message-box__btns .el-button--primary{
+  background: #ca0c16;
+  border-color: #ca0c16;
+}
+body .el-message-box .el-message-box__btns .el-button--default:hover{
+  background: #f1152091;
+  color: #fff;
+  border-color: #f1152091;
+}

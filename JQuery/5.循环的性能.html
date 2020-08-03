@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>循环的性能</title>
+  <script src="./jquery-3.5.1.js"></script>
+</head>
+<body>
+  <script>
+    var arr = [];
+    arr.length = 10000;
+    // $.each()
+    console.time('$.each');
+    $.each(arr, function(index, value) {
+      
+    });
+    console.timeEnd('$.each');
+
+    // 普通for循环
+    console.time('for');
+    var len = arr.length;
+    for (let i = 0; i < len; i++) {
+      
+    }
+    console.timeEnd('for');
+
+    // map()
+    console.time('map');
+    arr.map(function (item, index) {
+      
+    });
+    console.timeEnd('map');
+
+    console.time('$.map');
+    $.map(arr, function (value, index) {
+      
+    });
+    console.timeEnd('$.map');
+  </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>form文件上传</title>
+  <script src="./jquery-3.5.1.js"></script>
+  <script src="./jquery.form.js"></script>
+</head>
+<body>
+  <!-- 
+    target：设置或返回表单提交结果的iframe或window名。
+   -->
+  <div class="box">
+    <form 
+      id="form" 
+      method="get" 
+      enctype="multipart/form-data" 
+      target="theIframe"
+      action="http://rap2.taobao.org:38080/app/mock/164688/demo">
+      <label>选择文件：</label>
+      <span>
+        <input type="file" class="inpText">
+      </span>
+    </form>
+    <button onclick="submit()">提交</button>
+  </div>
+  <iframe name='theIframe' id='theIframe' style="display:none;"></iframe>
+
+  <script>
+    function submit() {
+      debugger
+      $("#form").ajaxSubmit(function (data) {
+        if(data){
+          console.log("submit -> data", data)
+        }else{
+          
+        }
+      })
+    }
+  </script>
+</body>
+</html>

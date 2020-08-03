@@ -1,0 +1,18 @@
+{"code":"0000", "data": {
+	"rows": [
+		{"name": "小明","age": "20", "sex": "0","addr": "一颗含水量大概70%的蓝色星球","salary": "10"},
+		{"name": "小强","age": "21", "sex": "0","addr": "地方2","salary": "10"},
+		{"name": "小红","age": "24", "sex": "1","addr": "地方3","salary": "10"},
+		{"name": "小白1","age": "19", "sex": "1","addr": "地方4","salary": "10"},
+		{"name": "小白2","age": "19", "sex": "1","addr": "地方5","salary": "10"},
+		{"name": "小白3","age": "19", "sex": "1","addr": "地方6","salary": "10"},
+		{"name": "小白4","age": "19", "sex": "1","addr": "地方7","salary": "10"},
+		{"name": "小白5","age": "19", "sex": "1","addr": "地方8","salary": "10"},
+		{"name": "小白6","age": "19", "sex": "1","addr": "地方9","salary": "10"},
+		{"name": "小白7","age": "19", "sex": "1","addr": "地方10","salary": "10"}
+	],
+	"footer": [
+		{"age": "0", "salary": "0"}
+	],
+	"total": 10
+}}

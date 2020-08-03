@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>文本框</title>
+  <link href="./css/easyui.css" rel="stylesheet">
+  <link href="./css/icon.css" rel="stylesheet">
+
+  <link href="./css/form.css" rel="stylesheet">
+
+  <script src="../jquery-3.5.1.js"></script>
+  <script src="./js/way.js"></script>
+  <script src="./js/jquery.easyui.min.js"></script>
+</head>
+<body>
+  <div class="easyui-panel" title="表单" style="width:100%;padding:20px;">
+    <form way-data="myFormData" way-persistent="false">
+      <input type="text" name="name">
+      <input type="text" name="age">
+      <input type="text" name="gender">
+    </form>
+  
+    Name: <span way-data="myFormData.name"></span>
+
+    <!-- 
+      scope：所有包含在这个范围内的子"way-data"（中文意思：范围）
+     -->
+    <div way-scope="someScope">
+      <div way-scope="with">
+        <div way-data="something"></div> <!-- 渲染的结果为 "hello" -->
+      </div>
+    </div>
+
+    <!-- 
+      $$key： 相当于index
+      repeat：相当于循环（中文意思：重复）
+     -->
+    <div way-repeat="some.list">
+      $$key - <span way-data="name"></span>
+    </div>
+  </div>
+
+  <script>
+    /*
+      属性：
+      
+      --------------------------------------------------------------------------
+      事件：
+      
+      --------------------------------------------------------------------------
+      方法：
+      
+    */ 
+    way.set("someScope", { "with": { "something": "hello" }});
+
+    way.set("some.list", [
+      {name:"Pierre"},
+      {name:"Paul"},
+      {name:"Jacques"}
+    ]);
+  </script>
+</body>
+</html>

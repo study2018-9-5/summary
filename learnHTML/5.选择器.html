@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS选择器</title>
+  <style>
+    /* div p:nth-of-type(1){
+      background: red;
+    } */
+    /* 选择在div中，除了(每一类标签的)第二个元素之外的所有元素 */
+    div :not(:nth-of-type(2)){
+      background: red;
+    }
+    /* 选择在div中，除了第二个p元素之外的所有p元素 */
+    /* div p:not(:nth-of-type(2)){
+      background: red;
+    } */
+  </style>
+</head>
+<body>
+  <!-- div>p{$标签}*5 -->
+  <div>
+    <p>1标签</p>
+    <p>2标签</p>
+    <p>3标签</p>
+    <p>4标签</p>
+    <p>5标签</p>
+    <span>6标签</span>
+    <span>6标签</span>
+  </div>
+</body>
+</html>

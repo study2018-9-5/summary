@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>tabs标签</title>
+  <link href="./easyui.css" rel="stylesheet">
+  <link href="./icon.css" rel="stylesheet">
+
+  <script src="../jquery-3.5.1.js"></script>
+  <script src="./jquery.easyui.min.js"></script>
+</head>
+<body>
+  <!-- 
+    
+  -->
+  <div id="tt" class="easyui-tabs" style="width:500px;height:250px;">
+    <div title="Tab1" style="padding:20px;display:none;">tab1</div>
+    <div title="Tab2" data-options="closable:true" style="overflow:auto;padding:20px;display:none;">tab2</div>
+    <div title="Tab3" data-options="collapsible:true" style="padding:20px;display:none;">tab3</div>
+  </div>
+  <script>
+    $('#tt').tabs({
+      border:false,
+      onSelect:function(title){
+        console.log(title+' is selected');
+      }
+    });
+  </script>
+</body>
+</html>

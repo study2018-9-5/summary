@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>easyUiLayout布局</title>
+  <link href="./easyui.css" rel="stylesheet">
+  <link href="./icon.css" rel="stylesheet">
+
+  <script src="../jquery-3.5.1.js"></script>
+  <script src="./jquery.easyui.min.js"></script>
+</head>
+<body>
+  <!-- 
+    fit：当设置为 true 时，就设置布局（layout）的尺寸适应它的父容器。
+         当在 'body' 标签上创建布局（layout）时，它将自动最大化到整个页面的全部尺寸。
+    split：当设置为 true 时，就显示拆分栏，用户可以用它改变面板（panel）的尺寸。
+  -->
+  <div id="box" class="easyui-layout" data-options="fit:true">
+    <div data-options="region:'north',title:'North',split:true" style="height:100px;">
+      <button id="btn">展开</button>
+    </div>
+    <div data-options="region:'south',title:'South',split:true" style="height:100px;"></div>
+    <div data-options="region:'east',title:'East',split:true" style="width:100px;"></div>
+    <div data-options="region:'west',title:'West',split:true" style="width:100px;"></div>
+    <div data-options="region:'center',title:'Center'" style="padding:5px;background:#eee;"></div>
+  </div>
+  <script>
+    function changeHeight() {
+      var windowH = $(window).height();
+      $('#box').layout('panel', 'north').panel('resize',{height: 200});
+      $('#box').layout('panel', 'center').panel('resize',{height: windowH-200});
+      $('#box').layout('resize');
+    }
+    $('#btn').click(changeHeight)
+  </script>
+</body>
+</html>

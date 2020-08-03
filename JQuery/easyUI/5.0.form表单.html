@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>文本框</title>
+  <link href="./css/easyui.css" rel="stylesheet">
+  <link href="./css/icon.css" rel="stylesheet">
+
+  <link href="./css/form.css" rel="stylesheet">
+
+  <script src="../jquery-3.5.1.js"></script>
+  <script src="./js/jquery.easyui.min.js"></script>
+</head>
+<body>
+  <div class="easyui-panel" title="表单" style="width:100%;padding:20px;">
+    <form id="formbox" method="post">
+			<div class="inputBox">
+				<input id="name" class="easyui-textbox" name="name" data-options="label:'Name:', labelAlign:'right', required:true">
+			</div>
+			<div class="inputBox">
+				<input id="email" class="easyui-textbox" name="email" data-options="label:'Email:', labelAlign:'right', required:true,validType:'email'">
+			</div>
+			<div class="inputBox">
+				<input id="subject" class="easyui-textbox" name="subject" data-options="label:'Subject:', labelAlign:'right', required:true">
+			</div>
+			<div class="inputBox">
+				<input id="message" class="easyui-searchbox" name="message" data-options="label:'Message:', labelAlign:'right'">
+			</div>
+			<div class="inputBox">
+        <select id="language" class="easyui-combobox" name="language" label="Language:"  labelAlign="right">
+          <option value="ar">Arabic</option>
+          <option value="bg">Bulgarian</option>
+          <option value="ca">Catalan</option>
+          <option value="en" selected="selected">English</option>
+          <option value="et">Estonian</option>
+          <option value="hu">Hungarian</option>
+        </select>
+      </div>
+      <div class="inputBox">
+				<input type="checkbox" checked>
+      </div>
+      <div class="inputBox">
+        <input id="datebox" class="easyui-datebox" name="date" label="日期框:" labelAlign="right" value="6/1/2012">
+      </div>
+      <div class="inputBox">
+        <input id="search" class="easyui-searchbox" name="search" labelAlign="right" data-options="label:'搜索:',prompt:'请输入人员姓名'"></input>
+        <!-- <input class="easyui-searchbox" name="搜索" data-options="label:'搜索',searcher:search,prompt:'请输入人员姓名'"></input> -->
+      </div>
+		</form>
+		<div style="text-align:center;padding:5px 0">
+			<a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()" style="width:80px">Submit</a>
+			<a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm()" style="width:80px">Clear</a>
+			<a href="javascript:void(0)" class="easyui-linkbutton" onclick="getForm()" style="width:100px">获取表单数据</a>
+    </div>
+  </div>
+
+  <script>
+    /*
+      属性：
+      
+      --------------------------------------------------------------------------
+      事件：
+      
+      --------------------------------------------------------------------------
+      方法：
+      submit：做提交动作，它包含下列属性：
+        url：动作的URL
+        onSubmit：提交之前的回调函数
+        success：提交成功之后的回调函数
+      clear：清除表单数据。
+      validate: 表单验证
+    */ 
+    var formObj = {
+      date: "06/01/2012",
+      email: "197777@qq.com",
+      language: "en",
+      message: "这是一个test",
+      name: "小明",
+      search: "",
+      sex: "男",
+      subject: "数学",
+    }
+    $(function () {
+    // $('#datebox').datebox('setValue', '6/1/2012');
+    // 绑定easyui-searchbox中的搜索按钮
+     $('.searchbox-button').click(function () {
+        console.log(1111);
+      })
+      fillFormItems('#formbox',formObj)
+    })
+    function search(value, name){
+      console.log(value, name);
+    }
+    function submitForm(){
+      $('#formbox').form('validate')
+			$('#formbox').form('submit');
+		}
+		function clearForm(){
+			$('#formbox').form('clear');
+    }
+
+    // 序列化表单
+    function getForm() {
+      var formData = $('#formbox').serializeArray();
+      var obj = {};
+      for (let i = 0; formData[i++];) {
+        obj[formData[i-1].name] = formData[i-1].value;
+      }
+      obj.sex = '男';  // 添加参数
+      console.log("getForm -> formData", formData)
+      console.log("getForm -> obj", obj)
+    }
+
+    // 动态去填充表单数据
+    function fillFormItems(id,items){
+      var arr=$(id).serializeArray();
+      console.time('表单的填充');
+      arr.forEach(function (item,index) {
+        if($('#'+item.name).hasClass("easyui-combobox")){
+            $("#"+item.name).combobox("setValue",items[item.name]);
+        }else if($('#'+item.name).hasClass("easyui-textbox")){
+            $("#"+item.name).textbox("setValue",items[item.name]);
+        }else if($('#'+item.name).hasClass("easyui-numberbox")){
+            $("#"+item.name).numberbox("setValue",items[item.name]);
+        }
+      });
+      // for (let i = 0; arr[i++];) {
+      //   var item = arr[i-1];
+      //   if($('#'+item.name).hasClass("easyui-combobox")){
+      //       $("#"+item.name).combobox("setValue",items[item.name]);
+      //   }else if($('#'+item.name).hasClass("easyui-textbox")){
+      //       $("#"+item.name).textbox("setValue",items[item.name]);
+      //   }else if($('#'+item.name).hasClass("easyui-numberbox")){
+      //       $("#"+item.name).numberbox("setValue",items[item.name]);
+      //   }
+      // }
+      console.timeEnd('表单的填充');
+    }
+  </script>
+</body>
+</html>

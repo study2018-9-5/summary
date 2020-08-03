@@ -1,0 +1,149 @@
+{
+  "id": "1978032",
+  "name": "CSDN",
+  "font_family": "iconfont",
+  "css_prefix_text": "",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "1010154",
+      "name": "收藏",
+      "font_class": "shoucangk",
+      "unicode": "e637",
+      "unicode_decimal": 58935
+    },
+    {
+      "icon_id": "5220896",
+      "name": "阅读区",
+      "font_class": "yuedu",
+      "unicode": "e608",
+      "unicode_decimal": 58888
+    },
+    {
+      "icon_id": "5876987",
+      "name": "评论",
+      "font_class": "pinglun",
+      "unicode": "e612",
+      "unicode_decimal": 58898
+    },
+    {
+      "icon_id": "5485669",
+      "name": "下载 (1)",
+      "font_class": "xiazai",
+      "unicode": "e61c",
+      "unicode_decimal": 58908
+    },
+    {
+      "icon_id": "15203362",
+      "name": "数据",
+      "font_class": "shuju",
+      "unicode": "e649",
+      "unicode_decimal": 58953
+    },
+    {
+      "icon_id": "33516",
+      "name": "home",
+      "font_class": "home",
+      "unicode": "e6b8",
+      "unicode_decimal": 59064
+    },
+    {
+      "icon_id": "101293",
+      "name": "理财收益",
+      "font_class": "shouyi",
+      "unicode": "e65f",
+      "unicode_decimal": 58975
+    },
+    {
+      "icon_id": "8605748",
+      "name": "试题管理",
+      "font_class": "guanli",
+      "unicode": "e666",
+      "unicode_decimal": 58982
+    },
+    {
+      "icon_id": "565981",
+      "name": "订单",
+      "font_class": "dingdan",
+      "unicode": "e63b",
+      "unicode_decimal": 58939
+    },
+    {
+      "icon_id": "538884",
+      "name": "退出",
+      "font_class": "tuichu",
+      "unicode": "e622",
+      "unicode_decimal": 58914
+    },
+    {
+      "icon_id": "969670",
+      "name": "关注",
+      "font_class": "guanzhu",
+      "unicode": "e655",
+      "unicode_decimal": 58965
+    },
+    {
+      "icon_id": "10273324",
+      "name": "个人信息",
+      "font_class": "gerenxinxi",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    },
+    {
+      "icon_id": "12706014",
+      "name": "帮助",
+      "font_class": "bangzhu",
+      "unicode": "e613",
+      "unicode_decimal": 58899
+    },
+    {
+      "icon_id": "12733317",
+      "name": "钱包",
+      "font_class": "qianbao",
+      "unicode": "e607",
+      "unicode_decimal": 58887
+    },
+    {
+      "icon_id": "4784112",
+      "name": "提醒",
+      "font_class": "tixing",
+      "unicode": "e658",
+      "unicode_decimal": 58968
+    },
+    {
+      "icon_id": "8091571",
+      "name": "eyes_close",
+      "font_class": "eyes_close",
+      "unicode": "e62b",
+      "unicode_decimal": 58923
+    },
+    {
+      "icon_id": "8288891",
+      "name": "眼睛",
+      "font_class": "eyes_open",
+      "unicode": "e857",
+      "unicode_decimal": 59479
+    },
+    {
+      "icon_id": "8777649",
+      "name": "social_sina",
+      "font_class": "weibo",
+      "unicode": "e65d",
+      "unicode_decimal": 58973
+    },
+    {
+      "icon_id": "8777657",
+      "name": "social_wechat",
+      "font_class": "wechat",
+      "unicode": "e65e",
+      "unicode_decimal": 58974
+    },
+    {
+      "icon_id": "11372777",
+      "name": "收藏",
+      "font_class": "shoucang",
+      "unicode": "e8c6",
+      "unicode_decimal": 59590
+    }
+  ]
+}
