@@ -1,7 +1,7 @@
 <!--
  * @Author: wangsibo
  * @Date: 2020-08-02 19:51:33
- * @LastEditTime: 2020-08-02 22:44:28
+ * @LastEditTime: 2020-08-20 11:39:20
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: src\views\home\home.vue
@@ -44,6 +44,44 @@
         </div>
       </div>
     </div>
+    <div class="home-swiper">
+      <div class="left">
+        <el-carousel trigger="click" arrow="always" :autoplay=false height="120px">
+          <el-carousel-item v-for="(item,index) in swiperList" :key="index">
+            <img :src="require(`@/assets/images/${item.srcName}`)"/>
+          </el-carousel-item>
+        </el-carousel>
+      </div>
+      <div class="right">
+        <div class="create">
+          <span class="title">创作活动</span>
+          <span class="more">更多</span>
+        </div>
+        <ul class="list-ul">
+          <li v-for="item in 2" :key="item">
+            <div class="lf">
+              <span></span>
+              <span>遇见技术栈 - 分享个人技术栈</span>
+              <img src="@/assets/images/hot.png" alt="">
+            </div>
+            <div class="rf">460人参与</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="home-common-entrance">
+      <!-- <div class="title">
+        <span class="tit">常用入口</span>
+        <span class="operate">数据详情</span>
+      </div> -->
+      <Header :tit="'常用入口'" :operate="'数据详情'"/>
+      <div class="btnDiv">
+        <el-button size="medium">上传资源</el-button>
+        <el-button size="medium">收益中心</el-button>
+        <el-button size="medium">博文数据</el-button>
+        <el-button size="medium">下载数据</el-button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -52,7 +90,11 @@ export default {
   name: "Home",
   data() {
     return {
-      medalList: [] // 勋章列表
+      medalList: [],   // 勋章列表
+      swiperList: [
+        {srcName: 'swiper_1.jpg'},
+        {srcName: 'swiper_2.jpg'},
+      ],  // 轮播图列表
     };
   },
   created() {
@@ -85,6 +127,7 @@ $ffcolor: #ffffff;
     height: 100px;
     background: $ffcolor;
     padding: 0 20px;
+    margin-bottom: 8px;
     display: flex;
     justify-content: space-between;
     .userInfo {
@@ -136,6 +179,106 @@ $ffcolor: #ffffff;
             }
           }
         }
+      }
+    }
+  }
+  .home-swiper{
+    width: 100%;
+    height: 120px;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    .left{
+      width: 600px;
+      .el-carousel{
+        img{
+          border-radius: 3px;
+        }
+      }
+    }
+    .right{
+      width: calc(100% - 608px);
+      background: #ffffff;
+      padding: 10px 15px;
+      border-radius: 3px;
+      .create{
+        width: 100%;
+        height: 20px;
+        line-height: 20px;
+        margin-bottom: 15px;
+        display: flex;
+        justify-content: space-between;
+        .title{
+          font-size: 16px;
+          font-weight: bold;
+        }
+        .more{
+          font-size: 14px;
+          cursor: pointer;
+        }
+      }
+      .list-ul{
+        li{
+          height: 20px;
+          line-height: 20px;
+          margin-bottom: 8px;
+          font-size: 14px;
+          display: flex;
+          justify-content: space-between;
+          .lf{
+            display: flex;
+            justify-content: start;
+            span:nth-of-type(1){
+              width: 5px;
+              height: 5px;
+              background: #d8d8d8;
+              margin-top: 7.5px;
+              margin-right: 10px;
+              border-radius: 50%;
+            }
+            span:nth-of-type(2){
+              cursor: pointer;
+            }
+            img{
+              width: 14px;
+              height: 14px;
+              margin-top: 2px;
+              margin-left: 8px;
+            }
+          }
+        }
+      }
+    }
+  }
+  .home-common-entrance{
+    height: 130px;
+    background: #ffffff;
+    padding: 0 16px;
+    border-radius: 3px;
+    .title{
+      height: 40px;
+      line-height: 40px;
+      margin-bottom: 20px;
+      font-size: 14px;
+      font-weight: bold;
+      border-bottom: 1px solid #d8d8d8;
+      display: flex;
+      justify-content: space-between;
+      .operate{
+        font-size: 14px;
+        font-weight: normal;
+        cursor: pointer;
+        &:hover{
+          color: #ca0c16;
+        }
+      }
+    }
+    .btnDiv{
+      display: flex;
+      justify-content: center;
+      .el-button{
+        width: 230px;
+        height: 50px;
       }
     }
   }

@@ -1,7 +1,7 @@
 <!--
  * @Author: wangsibo
  * @Date: 2020-07-29 11:48:07
- * @LastEditTime: 2020-08-02 21:36:21
+ * @LastEditTime: 2020-08-13 20:16:29
  * @LastEditors: Please set LastEditors
  * @Description: 用户的登录页面
  * @FilePath: src\views\login\index.vue
@@ -12,15 +12,15 @@
     <div id="login-box">
       <div id="title-box">Login</div>
       <!-- 登录的表单 start-->
-      <el-form ref="loginForm" :model="loginData">
-        <el-form-item>
+      <el-form ref="loginForm" :model="loginData" :rules="loginRules">
+        <el-form-item prop="username">
           <el-input
             ref="username"
             v-model="loginData.username" 
             placeholder="Username">
           </el-input>
         </el-form-item>
-        <el-form-item>
+        <el-form-item prop="password">
           <el-input 
             ref="password"
             v-model="loginData.password" 
@@ -38,6 +38,7 @@
 </template>
 
 <script>
+import {$ajaxLogin} from '@/api';
 export default {
   name: "Login",
   data() {
@@ -45,10 +46,17 @@ export default {
       passwordType: "password",
       loading: false,
       loginData: {
-        username: "",
-        password: ""
+        username: "admin",
+        password: "admin"
       },
-      // loginRules: []
+      loginRules: {
+        username: [
+          { required: true, message: '请输入用户名', trigger: 'bulr' }
+        ],
+        password: [
+          { required: true, message: '请输入密码', trigger: 'bulr' }
+        ],
+      }
     };
   },
   created() {
@@ -79,29 +87,30 @@ export default {
     },
     // 登录
     handleLogin() {
-      // this.$refs.loginForm.validate(valid => {
-      //   if (valid) {
+      this.$refs.loginForm.validate(valid => {
+        if (valid) {
+          let params = this.loginData;
           this.loading = true;
-          setTimeout(() => {
+          $ajaxLogin.login(params, res => {
+            if (res.data.code == 200) {
+              const redirectUrl = decodeURIComponent(this.$route.query.redirect || '/')  // 解码路径 => 拦截401重定向
+              window.localStorage.setItem('Token',res.data.token)
+              this.$router.push({
+                // path: '/page/home'
+                path: redirectUrl
+              })
+            } else {
+              this.$message.error(res.data.message);
+            }
             this.loading = false;
-            window.localStorage.setItem('Admin-Token','admin-token')
-            this.$router.push({
-              path: '/page/home'
-            })
-          }, 2000);
-          // this.$store.dispatch('user/login', this.loginForm)
-          //   .then(() => {
-          //     this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
-          //     this.loading = false
-          //   })
-          //   .catch(() => {
-          //     this.loading = false
-          //   })
-        // } else {
-        //   console.log('error submit!!')
-        //   return false
-        // }
-      // })
+          }, err => {
+            console.log(err);
+          })
+        } else {
+          console.log('error submit!!')
+          return false
+        }
+      })
     },
   }
 };

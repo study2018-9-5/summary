@@ -9,6 +9,9 @@ import ElementUI from 'element-ui';  // 引入ElementUI
 import 'element-ui/lib/theme-chalk/index.css'; 
 Vue.use(ElementUI);
 
+import MyPlugin from '@/plugins/headerPlugin.js';
+Vue.use(MyPlugin);
+
 import Mock from '@/mock/index.js'  // 引入mock
 // if (process.env.MOCK) {
 	Mock.startMock();

@@ -1,7 +1,7 @@
 <!--
  * @Author: wangsibo
  * @Date: 2020-08-03 15:26:47
- * @LastEditTime: 2020-08-03 19:04:13
+ * @LastEditTime: 2020-08-24 17:43:25
  * @LastEditors: Please set LastEditors
  * @Description: 文章列表
  * @FilePath: src\views\blogManage\articleList.vue
@@ -9,7 +9,7 @@
 <template>
   <!-- 查询 -->
   <div class="articleBox">
-    <div class="searchBox">
+    <div class="searchBox" v-if="typeAndStatus == 'all'">
       <el-form :model="searchCondition" label-width="auto">
         <el-row :gutter="20">
           <el-col :span="6">
@@ -67,13 +67,13 @@
       <li class="listItem" v-for="(item, index) in articleList" :key="index">
         <!-- 文章的标题 -->
         <div class="top">
-          <span class="articleStatus">{{item.articleStatus}}</span>
+          <span class="articleStatus" v-if="item.articleStatus !== '0'">{{item.articleStatus == '1'? '草稿': '转载'}}</span>
           <span class="articleTitle">{{item.articleTitle}}</span>
         </div>
         <!-- 文章的创作时间、阅读评论的数量、对文章的操作 -->
         <div class="bottom">
           <div class="baseInfo">
-            <span class="articleType">{{item.articleType}}</span>
+            <span class="articleType">{{item.articleType == '1'? '原创': '转载'}}</span>
             <span class="createTime">{{item.createTime}}</span>
             <ul class="readComment">
               <li>
@@ -91,7 +91,7 @@
             </ul>
           </div>
           <ul class="operate">
-            <li v-for="(it, idx) in item.operate" :key="idx" 
+            <li v-for="(it, idx) in item.operateArr" :key="idx" 
                 :class="it.flag == 'delete'? 'delete': ''"
                 @click="operate(it.flag)">
                 {{it.name}}
@@ -100,6 +100,7 @@
         </div>
       </li>
     </ul>
+    <!-- 分页 -->
     <div class="pageBox">
       <el-pagination background layout="prev, pager, next" :total="1000"></el-pagination>
     </div>
@@ -107,6 +108,7 @@
 </template>
 
 <script>
+import { $ajaxArticle } from '@/api';
 export default {
   name: "ArticleList",
   data() {
@@ -120,30 +122,47 @@ export default {
         keyWord: ''
       },
       articleList: [
-        {
-          articleStatus: '草稿',
-          articleTitle: 'way.js的使用',
-          articleType: '原创',
-          createTime: '2020年08月03日 00:30:00',
-          yueduNum: '9',
-          pinglunNum: '10',
-          shoucangkNum: '99',
-          operate: [
-            {name: '置顶', flag: 'goTop'},
-            {name: '查看', flag: 'look'},
-            {name: '删除', flag: 'delete'},
-          ]
-        }
+        // {
+        //   articleStatus: '草稿',
+        //   articleTitle: 'way.js的使用',
+        //   articleType: '原创',
+        //   createTime: '2020年08月03日 00:30:00',
+        //   yueduNum: '9',
+        //   pinglunNum: '10',
+        //   shoucangkNum: '99',
+        //   operate: [
+        //     {name: '置顶', flag: 'goTop'},
+        //     {name: '查看', flag: 'look'},
+        //     {name: '删除', flag: 'delete'},
+        //   ]
+        // }
       ]
     };
   },
+  props: {
+    typeAndStatus: String
+  },
   created () {
-    
+    this.getArticleList();
   },
   methods: {
     // 搜索文章
     searchArticle() {
+      this.getArticleList();
+    },
+    // 获取文章列表
+    getArticleList() {
+      var that = this;  
+      let params = {
+        year: 2020,
+        month: 4
+      }
+      $ajaxArticle.articleList(params, res => {
+        this.articleList = res.data.articleList;
+        console.log(this.articleList);
+      },err => {
 
+      })
     },
     // 操作
     operate(flag) {

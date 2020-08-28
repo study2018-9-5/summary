@@ -1,7 +1,7 @@
 /*
  * @Author: wangsibo
  * @Date: 2020-06-03 09:31:29
- * @LastEditTime: 2020-08-02 21:35:25
+ * @LastEditTime: 2020-08-27 22:03:32
  * @LastEditors: Please set LastEditors
  * @Description: 路由管理
  * @FilePath: src\router\index.js
@@ -24,22 +24,48 @@ const router = new Router({
       name: 'Login',
       component: () => import('@/views/login/index'),
     },
-    { // 首页
-      path: '/page',
-      name: 'Page',
-      redirect: '/page/home',
-      component: () => import('@/views/home/index'),
+    { // 有公共头部的页面
+      path: '/header',
+      name: 'Header',
+      redirect: '/header/page/home',
+      component: () => import('@/views/header/header'),
       children: [
-      {
-        path: 'home',
-        name: 'Home',
-        component: () => import('@/views/home/home'),
-      },
-      {
-        path: 'articleManage',
-        name: 'ArticleManage',
-        component: () => import('@/views/blogManage/articleManage'),
-      }]
+        {
+          path: 'page',
+          name: 'Page',
+          redirect: '/header/page/home',
+          component: () => import('@/views/home/index'),
+          children: [
+            { // 首页
+              path: 'home',
+              name: 'Home',
+              component: () => import('@/views/home/home'),
+            },
+            { // 文章管理
+              path: 'articleManage',
+              name: 'ArticleManage',
+              component: () => import('@/views/blogManage/articleManage'),
+            },
+          ]
+        },
+        { // 个人中心
+          path: 'personCenter',
+          name: 'PersonCenter',
+          component: () => import('@/views/personCenter/index'),
+          children: [
+            { // 个人信息
+              path: 'personInfo',
+              name: 'PersonInfo',
+              component: () => import('@/views/personCenter/personInfo')
+            },
+            { // 抽奖
+              path: 'lotter',
+              name: 'Lotter',
+              component: () => import('@/views/personCenter/lotter')
+            }
+          ]
+        }
+      ]
     },
     { // 404页面
       path: '/404',
@@ -61,13 +87,17 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
   // console.log('print-beforeEach', to, from, next);
   if (to.fullPath !== '/login') {  // 如果不是登录组件
-    if (!window.localStorage.getItem("Admin-Token")) {
+    if (!window.localStorage.getItem("Token")) {
       next('/login');  // 当前导航被中断，然后进行一个新的导航。
     } else {
       next();  // 如果一切正常，则调用这个方法进入下一个钩子。
     }
   } else {  // 如果是登录组件
-    next();
+    if (window.localStorage.getItem("Token")) {
+      next(from.fullPath);
+    } else {
+      next();
+    }
   }
 })
 

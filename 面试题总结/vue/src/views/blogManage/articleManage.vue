@@ -1,7 +1,7 @@
 <!--
  * @Author: wangsibo
  * @Date: 2020-08-02 18:33:38
- * @LastEditTime: 2020-08-03 16:42:06
+ * @LastEditTime: 2020-08-26 19:39:12
  * @LastEditors: Please set LastEditors
  * @Description: 博客管理-文章管理
  * @FilePath: src\views\blogManage\articleManage.vue
@@ -18,7 +18,7 @@
       <el-tab-pane label="回收站" name="sixth"></el-tab-pane>
     </el-tabs>
     <!-- 文章列表 -->
-    <ArticleList/>
+    <ArticleList :typeAndStatus="type"/>
   </div>
 </template>
 
@@ -29,7 +29,14 @@
     data() {
       return {
         activeName: 'first',
-        
+        type: 'all',
+        typeObj: {
+          '全部': 'all',
+          '公开': 'public',
+          '私密': 'private',
+          '审核': 'check',
+          '草稿箱': 'draft'
+        }
       }
     },
     components: {
@@ -41,25 +48,28 @@
     methods: {
       // 切换tabs事件
       handleClick(tab, event) {
-        switch (tab.label) {
-          case '全部':
-
-            break;
-          case '公开':
-            
-            break;
-          case '私密':
-            
-            break;
-          case '审核':
-            
-            break;
-          case '草稿箱':
-            
-            break;
-          default:
-            break;
-        }
+        // switch (tab.label) {
+        //   case '全部':
+        //     this.type = 'all'
+        //     break;
+        //   case '公开':
+        //     this.type = 'public'
+        //     break;
+        //   case '私密':
+        //     this.type = 'private'
+        //     break;
+        //   case '审核':
+        //     this.type = 'check'
+        //     break;
+        //   case '草稿箱':
+        //     this.type = 'draft'
+        //     break;
+        //   default:
+        //     break;
+        // }
+        
+        // 对ifelse/switchcase的优化
+        this.type = this.typeObj[tab.label];
       },
     },
   }
@@ -101,6 +111,5 @@
         }
       }
     }
-    
   }
 </style>
