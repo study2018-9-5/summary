@@ -64,15 +64,48 @@ body .el-popover{
 }
 
 /* 重置提示框样式 */
-body .el-message-box .el-message-box__headerbtn .el-message-box__close:hover{
-  color: #ca0c16;
+body .el-message-box .el-message-box__btns .el-button--default{
+  background: #d7d7d7;
+  color: #222;
+  border-color: #d7d7d7;
+}
+body .el-message-box .el-message-box__btns .el-button--default:hover{
+  background: #dfdfdf;
+  color: #222;
+  border-color: #dfdfdf;
 }
 body .el-message-box .el-message-box__btns .el-button--primary{
   background: #ca0c16;
+  color: #fff;
   border-color: #ca0c16;
 }
-body .el-message-box .el-message-box__btns .el-button--default:hover{
-  background: #f1152091;
+body .el-message-box .el-message-box__btns .el-button--primary:hover{
+  background: #e33e33;
   color: #fff;
-  border-color: #f1152091;
+  border-color: #e33e33;
+}
+body .el-message-box .el-message-box__headerbtn .el-message-box__close:hover{
+  color: #ca0c16;
+}
+
+/* 重置按钮样式 */
+/* 默认的 */
+/* .el-button--default {
+  background: #d7d7d7;
+  color: #222;
+  border-color: #d7d7d7;
+}
+.el-button--default:hover{
+  background: #dfdfdf;
+  color: #222;
+  border-color: #dfdfdf;
+} */
+/* 危险的 */
+.el-button--danger{
+  background: #e33e33;
+  color: #fff;
+  border-color: #e33e33;
+}
+.el-button--danger:hover {
+  background: #f1152091;
 }

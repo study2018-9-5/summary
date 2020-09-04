@@ -1,7 +1,7 @@
 <!--
  * @Author: wangsibo
  * @Date: 2020-08-03 15:26:47
- * @LastEditTime: 2020-08-24 17:43:25
+ * @LastEditTime: 2020-09-02 17:15:14
  * @LastEditors: Please set LastEditors
  * @Description: 文章列表
  * @FilePath: src\views\blogManage\articleList.vue
@@ -177,8 +177,8 @@ export default {
     // 删除文章
     delArticle() {
       this.$confirm('确定要删除该文章吗?', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
+        confirmButtonText: '确 定',
+        cancelButtonText: '取 消',
         type: 'warning'
       }).then(() => {
         this.$message({

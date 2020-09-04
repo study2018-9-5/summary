@@ -1,7 +1,7 @@
 /*
  * @Author: wangsibo
  * @Date: 2020-06-03 09:31:29
- * @LastEditTime: 2020-08-27 22:03:32
+ * @LastEditTime: 2020-09-04 10:55:11
  * @LastEditors: Please set LastEditors
  * @Description: 路由管理
  * @FilePath: src\router\index.js
@@ -33,7 +33,7 @@ const router = new Router({
         {
           path: 'page',
           name: 'Page',
-          redirect: '/header/page/home',
+          redirect: 'page/home',
           component: () => import('@/views/home/index'),
           children: [
             { // 首页
@@ -51,6 +51,7 @@ const router = new Router({
         { // 个人中心
           path: 'personCenter',
           name: 'PersonCenter',
+          redirect: 'personCenter/personInfo',
           component: () => import('@/views/personCenter/index'),
           children: [
             { // 个人信息
@@ -72,7 +73,7 @@ const router = new Router({
       name: 'Page404',
       component: () => import('@/views/errorpage/404.vue'),
     },
-    { path: '/', redirect: '/page/home'},
+    { path: '/', redirect: '/header/page/home'},
     // 如果找不到页面，重定向到404页面。
     { path: '*', redirect: '/404' },
   ]
@@ -94,6 +95,7 @@ router.beforeEach((to, from, next) => {
     }
   } else {  // 如果是登录组件
     if (window.localStorage.getItem("Token")) {
+      // console.log('print-login', to, from, next);
       next(from.fullPath);
     } else {
       next();

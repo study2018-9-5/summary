@@ -1,7 +1,7 @@
 <!--
  * @Author: wangsibo
  * @Date: 2020-08-26 19:24:56
- * @LastEditTime: 2020-08-27 21:04:50
+ * @LastEditTime: 2020-08-28 11:01:54
  * @LastEditors: Please set LastEditors
  * @Description: 抽奖页面
  * @FilePath: vue\src\views\personCenter\lotter.vue
@@ -15,6 +15,7 @@
     </el-tabs>
     <!-- 抽奖 start -->
     <div class="lotter-div">
+      <!-- 左侧规则 start -->
       <div class="left">
         <div class="rule">
           <div class="title">抽奖规则</div>
@@ -40,6 +41,8 @@
           </div>
         </div>
       </div>
+      <!-- 左侧规则 end -->
+      <!-- 右侧转盘 start -->
       <div class="right">
         <div class="lotter-box">
           <img class="lotter-bdg" src="@/assets/images/lotter_box.png">
@@ -55,6 +58,7 @@
         </div>
         <div class="lotter-time">剩余0次抽奖机会</div>
       </div>
+      <!-- 右侧转盘 end -->
     </div>
     <!-- 抽奖 end -->
   </div>
@@ -65,13 +69,11 @@ export default {
   name: "Lotter",
   data() {
     return {
-      activeName: "first",
-      activeIndex: -1,
-      maskShow: false, 
-      winnerList: ['恭喜用户qq_5666689抽中30元现金券','恭喜用户qq_7999689抽中30元现金券','恭喜用户qq_8999689抽中40元现金券'],
-      arr: [0, 1, 2, 5, 8, 7, 6, 3],
-      borderShow: -1,
-      lotterList: [
+      activeName: "first",  // tabs切换name
+      activeIndex: -1,      // 抽奖列表的下标
+      maskShow: false,      // 遮罩层是否显示
+      lotterArr: [0, 1, 2, 5, 8, 7, 6, 3],  // 奖品旋转的数组(顺时针)
+      lotterList: [  // 抽奖转盘列表
         {imgName: 'book.png', title: '实体书一本'},
         {imgName: 'cup.png', title: '陶瓷杯'},
         {imgName: 'nianka.png', title: '年卡'},
@@ -81,7 +83,12 @@ export default {
         {imgName: 'CB.png', title: '1 C币'},
         {imgName: 'clothes.png', title: 'CSDN T恤'},
         {imgName: 'vipCard.png', title: 'VIP月卡'},
-      ]
+      ],
+      winnerList: [  // 中奖名单
+        '恭喜用户qq_5666689抽中30元现金券',
+        '恭喜用户qq_7999689抽中30元现金券',
+        '恭喜用户qq_8999689抽中40元现金券'
+      ],
     };
   },
   created() {},
@@ -89,15 +96,15 @@ export default {
     handleClick() {
 
     },
-    // 抽奖 todo(优化)
+    // 抽奖 todo(需要优化)
     lotterClick() {
       this.maskShow = true;
-      this.borderShow = -1;
-      this.lotterFor(this.arr);
+      this.lotterFor(this.lotterArr);
     },
     lotterFor(arr) {
       let that = this;
       let array = [];
+      // 拼接一个循环旋转的数组
       for (let i = 0; i <= 4; i++) {
         array = array.concat(arr)
       }
@@ -106,7 +113,6 @@ export default {
           setTimeout(function () {
             that.activeIndex = array[j];
             if(j == array.length -1) {
-              that.borderShow = array[j]
               that.getRandom(arr)
             }
           }, j*100)
@@ -118,10 +124,9 @@ export default {
       let that = this;
       // let index = Math.floor((Math.random()*arr.length)); // 随机选取index
       // let endArr = arr.concat(arr.slice(0, index+1));
-      let index = arr.indexOf(that.percentage());
-      let endArr = arr.concat(arr.slice(0, index+1));
-      let selectItem = that.lotterList[arr[index]].title;
-      console.log(selectItem);
+      let index = arr.indexOf(that.percentage());          // 选中的index
+      let endArr = arr.concat(arr.slice(0, index+1));      // 选中之后多旋转一周
+      let selectItem = that.lotterList[arr[index]].title;  // 选中选项的名称
       for (let i = 0; i < endArr.length; i++) {
         (function(j) {
           setTimeout(function () {
